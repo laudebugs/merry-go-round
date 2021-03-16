@@ -13,7 +13,7 @@ export class BidService {
     const helper = new JwtHelperService();
     const decodedToken = helper.decodeToken(localStorage.getItem('token'));
     bid.user = decodedToken.username;
-
+    console.log();
     return this.apollo.mutate({
       mutation: gql`
         mutation MakeBid($bid: BidInput!) {

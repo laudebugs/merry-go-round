@@ -5,6 +5,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { Credentials } from './../../services/types';
@@ -25,7 +26,8 @@ export class SignInComponent implements OnInit {
   constructor(
     fb: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private _snackBar: MatSnackBar
   ) {
     this.options = fb.group({
       hideRequired: this.hideRequiredControl,
@@ -39,6 +41,7 @@ export class SignInComponent implements OnInit {
   ngOnInit(): void {}
 
   submit() {
+    this.openSnackBar('Logging in', '🤹');
     this.loading = true;
     const user = this.form.get('username').value;
     const pass = this.form.get('password').value;
@@ -47,6 +50,7 @@ export class SignInComponent implements OnInit {
       .signIn(new Credentials(user, pass))
       .subscribe((res: any) => {
         this.loading = false;
+        this._snackBar.dismiss();
         const token = res.data.signin;
         if (token !== null) {
           localStorage.setItem('token', token);
@@ -54,5 +58,8 @@ export class SignInComponent implements OnInit {
           this.router.navigateByUrl('');
         }
       });
+  }
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action);
   }
 }

@@ -8,7 +8,7 @@
 
         <input
           formControlName="username"
-          type="text"
+          type="username"
           matInput
           placeholder="dwaynejohnson"
         />
@@ -64,5 +64,8 @@
         Finish
       </button>
     </div>
+    <p>
+      Have an account already? <a [routerLink]="[ '/signin', ]">Sign in here</a>
+    </p>
   </div>
 </div>

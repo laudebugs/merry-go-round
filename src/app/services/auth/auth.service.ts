@@ -12,8 +12,6 @@ export class AuthService {
    * @returns an observable
    */
   signUp(user: User) {
-    console.log(user);
-
     return this.apollo.mutate({
       mutation: gql`
         mutation SignUp($user: UserInput!) {
