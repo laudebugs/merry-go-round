@@ -1,1 +1,22 @@
-<p>user-list works!</p>
+<div class="main">
+  <header>
+    <span>Carol</span>
+
+    <img src="../../../assets/dps/blossom.png" />
+  </header>
+  <div class="bids">
+    <h2>Bids:</h2>
+    <mat-card>
+      <div *ngFor="let bid of bids; let i = index">
+        <div class="one_bid">
+          <h3>{{ i + 1 }}. {{ getProduct(bid.productId).name }}</h3>
+          <p></p>
+          <mat-chip-list>
+            <mat-chip>{{ bid.tickets }}</mat-chip>
+          </mat-chip-list>
+        </div>
+        <mat-divider></mat-divider>
+      </div>
+    </mat-card>
+  </div>
+</div>

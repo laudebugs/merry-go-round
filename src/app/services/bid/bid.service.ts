@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { JwtHelperService } from '@auth0/angular-jwt';
 import { Apollo, gql } from 'apollo-angular';
 import { Bid } from '../types';
 
@@ -9,11 +10,15 @@ export class BidService {
   constructor(private apollo: Apollo) {}
 
   makeBid(bid: Bid) {
+    const helper = new JwtHelperService();
+    const decodedToken = helper.decodeToken(localStorage.getItem('token'));
+    bid.user = decodedToken.username;
+
     return this.apollo.mutate({
       mutation: gql`
-        mutation MakeBid($bid: Bid) {
-          mutation
+        mutation MakeBid($bid: BidInput!) {
           makeBid(bid: $bid) {
+            _id
             productId
             tickets
             user
@@ -28,7 +33,6 @@ export class BidService {
     return this.apollo.mutate({
       mutation: gql`
         mutation ChangeBid($bid: Bid) {
-          mutation
           changeBid(bid: $bid) {
             _id
             productId

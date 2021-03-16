@@ -42,7 +42,7 @@ export class SignInComponent implements OnInit {
     this.loading = true;
     const user = this.form.get('username').value;
     const pass = this.form.get('password').value;
-
+    console.log(pass);
     this.authService
       .signIn(new Credentials(user, pass))
       .subscribe((res: any) => {

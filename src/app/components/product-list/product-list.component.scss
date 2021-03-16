@@ -1,5 +1,6 @@
-mat-card {
+mat-card.product {
   margin-bottom: 2%;
+  // background-color: var(--tertiary);
 }
 mat-card-content {
   display: flex;
@@ -8,7 +9,6 @@ mat-card-content {
 div.product__frame {
   width: 75%;
   display: inline-block;
-  border-right: 1px solid black;
   display: flex;
 }
 div.product {
@@ -22,7 +22,14 @@ div.product {
     text-align: left;
   }
   div.product__description {
-    margin: 2.5%;
+    h1,
+    h2,
+    h3 {
+      font-family: "Now Bold";
+    }
+    p {
+      font-family: "Now Regular";
+    }
   }
 }
 div.more__actions {
@@ -33,28 +40,33 @@ div.more__actions {
   mat-icon {
     font-size: 25pt;
   }
-  border-right: 1px solid black;
-  margin-right: 5%;
+  // margin-right: 5%;
 }
-div.product__details {
-  width: 30%;
+mat-card.product__details {
+  width: 40%;
   display: inline-block;
   display: inline-flex;
   flex-direction: column;
   align-items: stretch;
-  height: 100%;
-  margin-right: 5%;
+  // height: 100%;
 
   div.average__bids,
   div.no__bids {
-    height: 25%;
     border-bottom: 1px solid black;
     width: 95%;
     flex: 1;
   }
   div.product__winner {
-    height: 50%;
     flex: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    padding: 5% 0 5% 0;
+    mat-chip {
+      align-self: center;
+      background-color: var(--yellow);
+    }
   }
 }
 
@@ -76,6 +88,7 @@ div.secondary {
       text-align: center;
       // padding: 5%;
       font-size: 175%;
+      font-family: "Now Regular";
     }
     div.actions {
       display: flex;
@@ -98,4 +111,12 @@ div.secondary {
 }
 p.em {
   font-style: italic;
+}
+mat-icon,
+button {
+  user-select: none;
+}
+mat-icon:hover,
+button:hover {
+  cursor: pointer;
 }

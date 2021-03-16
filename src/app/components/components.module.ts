@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { Material } from 'src/libs';
 import { GeneralHeaderComponent } from './general-header/general-header.component';
 import { PaletteComponent } from './palette/palette.component';
@@ -21,7 +22,7 @@ import { YourItemComponent } from './your-item/your-item.component';
     GeneralHeaderComponent,
     SecondaryHeaderComponent,
   ],
-  imports: [CommonModule, Material],
+  imports: [CommonModule, Material, ReactiveFormsModule],
   exports: [
     ProductComponent,
     ProductListComponent,

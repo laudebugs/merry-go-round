@@ -22,7 +22,11 @@
       </div>
     </div>
     <div class="selection">
-      <mat-radio-group aria-label="Select an option">
+      <mat-radio-group
+        aria-label="Select an option"
+        [formControl]="paletteFormControl"
+        (ngModelChange)="changeFn($event)"
+      >
         <mat-radio-button value="merry"></mat-radio-button>
         <mat-radio-button value="go"></mat-radio-button>
         <mat-radio-button value="round"></mat-radio-button>

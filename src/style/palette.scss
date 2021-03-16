@@ -28,3 +28,8 @@
   --tertiary: #ffc49b;
   --fourth: #a1c6ea;
 }
+h1,
+h2,
+h3 {
+  color: var(--primary);
+}
