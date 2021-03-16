@@ -1,0 +1,55 @@
+div.content {
+  display: flex;
+  justify-content: center;
+  height: 80vh;
+  align-items: center;
+  div.area {
+    width: fit-content;
+    // border: 1px solid black;
+    h2 {
+      margin-top: 10%;
+      text-align: center;
+    }
+    padding: 1%;
+  }
+  div.more {
+    padding-top: 5%;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+div.fillForm {
+  display: flex;
+  justify-content: space-around;
+  // align-items: center;
+  height: 40vh;
+  flex-direction: column;
+  align-content: flex-start;
+
+  mat-form-field {
+    display: block;
+    // height: 8vh;
+  }
+  padding-bottom: 5%;
+}
+button.done {
+  padding: 2%;
+  margin: 0 5% 0 5%;
+  background-color: var(--bluish);
+  font-size: 100%;
+}
+mat-hint {
+  color: var(--gray);
+  font-size: 75%;
+  text-align: left;
+}
+button.signUpBtn {
+  align-self: center;
+  background-color: #44bba4;
+  color: #393e41;
+}
+p,
+a {
+  font-family: "Now Regular";
+}

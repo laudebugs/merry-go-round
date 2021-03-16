@@ -1,26 +1,17 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { Material } from 'src/libs';
-import { ProductListComponent } from '../components/product-list/product-list.component';
-import { ProductComponent } from '../components/product/product.component';
-import { UserListComponent } from '../components/user-list/user-list.component';
+import { AngularStickyThingsModule } from '@w11k/angular-sticky-things';
 import { YourItemComponent } from '../components/your-item/your-item.component';
-import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './login/login.component';
-import { SignInComponent } from './sign-in/sign-in.component';
-import { SignUpComponent } from './sign-up/sign-up.component';
+import { AuthService } from '../services/auth/auth.service';
+import { BidService } from '../services/bid/bid.service';
+import { GraphQLModule } from '../services/graphql/graphql.module';
+import { ProductService } from '../services/product/product.service';
+import { AdminComponent } from './admin/admin.component';
+import { UsersComponent } from './users/users.component';
 @NgModule({
-  declarations: [
-    LoginComponent,
-    SignUpComponent,
-    HomeComponent,
-    SignInComponent,
-    ProductComponent,
-    ProductListComponent,
-    YourItemComponent,
-    UserListComponent,
-  ],
-  imports: [CommonModule, Material],
-  exports: [Material],
+  declarations: [YourItemComponent, UsersComponent, AdminComponent],
+  providers: [AuthService, ProductService, BidService],
+  imports: [CommonModule, GraphQLModule, AngularStickyThingsModule],
+  exports: [GraphQLModule],
 })
 export class PagesModule {}

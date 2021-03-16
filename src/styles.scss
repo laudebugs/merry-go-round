@@ -1,1 +1,36 @@
 /* You can add global styles to this file, and also import other style files */
+// Css Reset
+@import "style/reset";
+
+// Import fonts Stylesheet
+@import "style/fonts";
+
+// import palette stylesheet
+@import "style/palette";
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  color: var(--primary);
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: "Now Regular";
+}
+* {
+  user-select: none;
+}
+h1,
+h2,
+h3 {
+  font-family: "Now Bold";
+}
+p {
+  font-family: "Now Regular";
+}

@@ -6,6 +6,7 @@ div.frame {
   h3 {
     text-align: center;
   }
+  padding: 5%;
 }
 div.palette {
   //   vertical-align: top;
@@ -15,7 +16,7 @@ div.palette {
   align-items: center;
 }
 div.colors {
-  width: 65%;
+  width: 75%;
   display: inline-block;
   justify-content: space-between;
   div {
@@ -58,7 +59,7 @@ div.colors {
   }
 }
 div.selection {
-  width: 20%;
+  width: 10%;
   display: inline-block;
   //   align-content: space-between;
   height: 100%;
@@ -74,4 +75,12 @@ div.selection {
       height: 7.5vh;
     }
   }
+}
+h1,
+h2,
+h3 {
+  font-family: "Now Bold";
+}
+p {
+  font-family: "Now Regular";
 }

@@ -1,14 +1,19 @@
-.example-container {
-  width: 100vw;
+mat-drawer-container.container {
   min-height: 100vh;
-  //   margin: 12px;
-  border: 1px solid #555;
+
+  mat-drawer {
+    width: 20vw;
+    background-color: var(--secondary);
+    padding-top: 8vh;
+  }
+  div.misc {
+    text-align: center;
+    img {
+      height: 150px;
+    }
+  }
 }
-mat-drawer {
-  width: 20vw;
-  background-color: var(--secondary);
-  padding-top: 8vh;
-}
+
 button.logout_btn {
   margin: 5%;
 }
@@ -32,41 +37,55 @@ mat-toolbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-h1 {
-  text-align: center;
-  color: var(--tertiary);
-}
-.example-label {
-  display: table-cell;
-  font-size: 14px;
-  margin-left: 8px;
-  min-width: 120px;
+  h1 {
+    text-align: center;
+    margin-right: 3%;
+    color: var(--tertiary);
+  }
 }
 
-.example-button-row {
-  display: table-cell;
-  width: 490px;
-}
-
-.example-button-row .mat-button-base {
-  margin: 8px 8px 8px 0;
-}
-
-.example-flex-container {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-}
-
-.example-button-container {
-  display: flex;
-  justify-content: center;
-  width: 120px;
-}
 mat-drawer-content {
   width: 100%;
+  div.content {
+    display: flex;
+    width: 95%;
+    padding: 0 2.5% 0 2.5%;
+
+    div.product {
+      width: 77.5%;
+      padding-right: 2.5%;
+      secondary-header {
+        width: 100%;
+      }
+      div.enclosure {
+        display: flex;
+        product-list {
+          width: 70%;
+          display: inline-block;
+        }
+        gift-area {
+          width: 30%;
+          display: inline-block;
+          justify-self: center;
+          padding-top: 15vh;
+          div {
+            svg {
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+    div.user {
+      width: 20%;
+    }
+  }
 }
-product-list {
-  width: 100%;
+h1,
+h2,
+h3 {
+  font-family: "Now Bold";
+}
+p {
+  font-family: "Now Regular";
 }

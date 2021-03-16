@@ -1,0 +1,22 @@
+h1 {
+  text-align: center;
+  color: var(--tertiary);
+  width: 100%;
+}
+mat-toolbar {
+  height: 8vh;
+
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--primary);
+}
+h1,
+h2,
+h3 {
+  font-family: "Now Bold";
+}
+p {
+  font-family: "Now Regular";
+}

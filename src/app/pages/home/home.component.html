@@ -1,9 +1,12 @@
-<mat-drawer-container class="example-container" hasBackdrop="true">
+<mat-drawer-container #spacer class="container" hasBackdrop="true">
   <mat-drawer #drawer mode="push">
     <mat-card>
       <profile></profile>
     </mat-card>
     <palette></palette>
+    <div class="misc">
+      <img src="../../../assets/ruf/ruf_logo.png" />
+    </div>
     <div class="logout_btn">
       <button mat-raised-button color="accent" class="logout_btn">
         Log Out
@@ -22,7 +25,21 @@
       </button>
       <h1>MERRY GO ROUND</h1>
     </mat-toolbar>
-
-    <product-list></product-list>
+    <div class="content">
+      <div class="product">
+        <secondary-header [tickets]="tickets"></secondary-header>
+        <div class="enclosure" #spacer>
+          <product-list
+            (bidsChange)="this.bids = $event"
+            (ticketsChange)="this.tickets = $event"
+            (productsChange)="this.products = $event"
+          ></product-list>
+          <gift-area></gift-area>
+        </div>
+      </div>
+      <div class="user">
+        <user-list stickyThing [products]="products" [bids]="bids"></user-list>
+      </div>
+    </div>
   </mat-drawer-content>
 </mat-drawer-container>

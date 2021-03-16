@@ -1,0 +1,35 @@
+:root {
+  --like: #ff5757;
+  --orange: #ff914d;
+  --yellow: #ffde59;
+  --green: #169d53;
+  --red: #ff1616;
+  --white: #f5f3f5;
+  --grey: #a6a6a6;
+  --somewhat: #f4b688;
+  --bluish: #55d6e3;
+  --like: #ff4f79;
+}
+.merry {
+  --primary: #333132;
+  --secondary: #ece816;
+  --tertiary: #edebd7;
+  --fourth: #e843a1;
+}
+.go {
+  --primary: #439775;
+  --secondary: #ffb86f;
+  --tertiary: #d2e59e;
+  --fourth: #81559b;
+}
+.round {
+  --primary: #3e2f5b;
+  --secondary: #b0bea9;
+  --tertiary: #ffc49b;
+  --fourth: #a1c6ea;
+}
+h1,
+h2,
+h3 {
+  color: var(--primary);
+}

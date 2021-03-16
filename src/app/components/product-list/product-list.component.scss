@@ -1,42 +1,122 @@
-div.menu-bar {
-  margin: 1% 2% 1% 2%;
+mat-card.product {
+  margin-bottom: 2%;
+  // background-color: var(--tertiary);
+}
+mat-card-content {
   display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  height: 6vh;
+  justify-content: space-around;
+}
+div.product__frame {
+  width: 75%;
+  display: inline-block;
+  display: flex;
+}
+div.product {
+  width: 80%;
+  display: inline-flex;
 
-  padding-bottom: 0.75%;
-  border-bottom: 2px solid var(--primary);
-
+  img {
+    width: 60%;
+  }
   h2 {
-    color: var(--grey);
+    text-align: left;
   }
-  h2.selected {
-    color: var(--primary);
-  }
-  div.routes {
-    display: inline-flex;
-    justify-content: flex-start;
-    align-items: center;
-    width: 40%;
-    // display: inline-block;
-    h2 {
-      padding-right: 3%;
+  div.product__description {
+    h1,
+    h2,
+    h3 {
+      font-family: "Now Bold";
+    }
+    p {
+      font-family: "Now Regular";
     }
   }
-  div.tickets {
-    width: 20%;
-    display: inline-block;
-    text-align: right;
+}
+div.more__actions {
+  width: 15%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  mat-icon {
+    font-size: 25pt;
   }
-  div.buttons {
-    display: flex;
-    justify-content: flex-end;
-    width: 40%;
+  // margin-right: 5%;
+}
+mat-card.product__details {
+  width: 40%;
+  display: inline-block;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: stretch;
+  // height: 100%;
 
-    button.mat-raised-button {
-      background-color: var(--red);
-      color: white;
+  div.average__bids,
+  div.no__bids {
+    border-bottom: 1px solid black;
+    width: 95%;
+    flex: 1;
+  }
+  div.product__winner {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    padding: 5% 0 5% 0;
+    mat-chip {
+      align-self: center;
+      background-color: var(--yellow);
     }
   }
+}
+
+div.secondary {
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+
+  div.bid__area {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: space-around;
+    padding: 5%;
+    height: 100%;
+    // border: 1px solid black;
+
+    h3 {
+      text-align: center;
+      // padding: 5%;
+      font-size: 175%;
+      font-family: "Now Regular";
+    }
+    div.actions {
+      display: flex;
+      justify-content: center;
+
+      mat-icon {
+        font-size: 30px;
+        display: inline-block;
+        width: 50%;
+        // height: 40%;
+        text-align: center;
+      }
+    }
+    button {
+      width: fit-content;
+      align-self: center;
+      border-radius: 20px;
+    }
+  }
+}
+p.em {
+  font-style: italic;
+}
+mat-icon,
+button {
+  user-select: none;
+}
+mat-icon:hover,
+button:hover {
+  cursor: pointer;
 }

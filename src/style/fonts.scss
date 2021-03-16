@@ -1,0 +1,64 @@
+/* Font families
+----------------*/
+@font-face {
+  font-family: "Agrandir-GrandHeavy";
+  src: url("../assets/Agrandir/Agrandir-GrandHeavy.otf");
+}
+@font-face {
+  font-family: "Agrandir-GrandLight";
+  src: url("../assets/Agrandir/Agrandir-GrandLight.otf");
+}
+@font-face {
+  font-family: "Agrandir-Narrow";
+  src: url("../assets/Agrandir/Agrandir-Narrow.otf");
+}
+@font-face {
+  font-family: "Agrandir-Regular";
+  src: url("../assets/Agrandir/Agrandir-Regular.otf");
+}
+@font-face {
+  font-family: "Agrandir-WideLight";
+  src: url("../assets/Agrandir/Agrandir-WideLight.otf");
+}
+@font-face {
+  font-family: "Agrandir-TextBold";
+  src: url("../assets/Agrandir/Agrandir-TextBold.otf");
+}
+@font-face {
+  font-family: "LOT";
+  src: url("../assets/LOT.otf");
+}
+
+@font-face {
+  font-family: "Now Regular";
+  src: url("../assets/Now/Now-Regular.woff");
+}
+
+@font-face {
+  font-family: "Now Bold";
+  src: url("../assets/Now/Now-Bold.woff");
+}
+
+h1 {
+  font-family: "LOT";
+  font-size: 20pt;
+}
+h2 {
+  font-size: 18pt;
+  font-family: "Agrandir-GrandHeavy";
+}
+h3 {
+  font-size: 16pt;
+  font-family: "Agrandir-WideLight";
+  font-weight: 600;
+}
+h4 {
+  font-size: 15pt;
+  line-height: 14pt;
+  font-family: "Agrandir-WideLight";
+  font-weight: 600;
+}
+body {
+  font-size: 15pt;
+  font-family: "Agrandir-Regular";
+}

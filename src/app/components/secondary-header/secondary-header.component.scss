@@ -1,0 +1,52 @@
+div.menu-bar {
+  margin: 1% 0% 1% 0%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  height: 6vh;
+
+  // padding-bottom: 0.75%;
+  border-bottom: 2px solid var(--primary);
+
+  h2 {
+    color: var(--grey);
+    user-select: none;
+  }
+  h2.selected {
+    color: var(--primary);
+  }
+  div.routes {
+    display: inline-flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 40%;
+    // display: inline-block;
+    h2 {
+      padding-right: 3%;
+    }
+  }
+  div.tickets {
+    width: 20%;
+    display: inline-block;
+    text-align: right;
+  }
+  div.buttons {
+    display: flex;
+    justify-content: flex-end;
+    width: 40%;
+    align-items: center;
+    height: 100%;
+    button.mat-raised-button {
+      background-color: var(--red);
+      color: white;
+    }
+  }
+}
+h1,
+h2,
+h3 {
+  font-family: "Now Bold";
+}
+p {
+  font-family: "Now Regular";
+}

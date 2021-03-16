@@ -1,15 +1,62 @@
-<div class="menu-bar">
-  <div class="routes">
-    <h2 class="selected">Items</h2>
-    <h2 [ngStyle]="{ visibility: selected === 'users' ? 'visible' : 'hidden' }">
-      Users
-    </h2>
-    <h2>Draw</h2>
-  </div>
-  <div class="tickets">
-    <h3>Tickets: 0</h3>
-  </div>
-  <div class="buttons">
-    <button mat-raised-button color="red">End Bidding</button>
-  </div>
+<div>
+  <mat-card *ngFor="let product of products" class="product">
+    <mat-card-content>
+      <div class="product__frame">
+        <div class="product">
+          <div class="product__description">
+            <h2>
+              {{ product.name }}
+            </h2>
+            <p class="em">from {{ product.owner }}</p>
+            <p>{{ product.description }}</p>
+            <!-- <img src="{{ product.photo }}" /> -->
+          </div>
+        </div>
+        <div class="more__actions">
+          <mat-icon style="color: var(--grey)">favorite</mat-icon>
+        </div>
+        <mat-card class="product__details">
+          <div class="no__bids">bids: 0</div>
+          <div class="average__bids">avg bid: 2tckts</div>
+          <div class="product__winner">
+            winner
+            <mat-chip-list>
+              <mat-chip>{{ "TBD" }}</mat-chip>
+            </mat-chip-list>
+          </div>
+        </mat-card>
+      </div>
+      <div class="secondary">
+        <div class="bid__area">
+          <div class="actions">
+            <mat-icon (click)="updateBidTickets(product, 0)"
+              >remove_circle_outline</mat-icon
+            >
+            <h3>{{ getProductBids(product._id) }}</h3>
+            <mat-icon (click)="updateBidTickets(product, 1)"
+              >add_circle_outline</mat-icon
+            >
+          </div>
+          <ng-container *ngIf="getStatus(product._id); else elseTemplate">
+            <button
+              style="background-color: var(--orange); color: var(--white)"
+              mat-raised-button
+              (click)="placeBid(product._id)"
+            >
+              Your bid
+            </button>
+          </ng-container>
+          <ng-template #elseTemplate>
+            <button
+              style="background-color: var(--green); color: var(--white)"
+              mat-raised-button
+              (click)="placeBid(product._id)"
+            >
+              Place bid
+            </button>
+          </ng-template>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
 </div>

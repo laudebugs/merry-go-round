@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { avatars } from '../avatar/avatars';
 
 @Component({
   selector: 'profile',
@@ -11,4 +12,20 @@ export class ProfileComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
+  getAvatar() {
+    let avatarIndx = localStorage.getItem('avatar');
+
+    return avatars[avatarIndx];
+  }
+
+  getUsername() {
+    let username = localStorage.getItem('username');
+    return username;
+  }
+
+  getEmail() {
+    let email = localStorage.getItem('email');
+    return email;
+  }
 }
