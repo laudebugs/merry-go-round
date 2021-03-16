@@ -1,12 +1,12 @@
 <div class="main">
   <header>
-    <span>Carol</span>
+    <span>{{ getUsername() }}</span>
 
     <img src="../../../assets/dps/{{ getAvatar() }}" />
   </header>
   <div class="bids">
     <h2>Bids:</h2>
-    <mat-card>
+    <mat-card *ngIf="bids.length > 0">
       <div *ngFor="let bid of bids; let i = index">
         <div class="one_bid">
           <h3>{{ i + 1 }}. {{ getProduct(bid.productId).name }}</h3>
@@ -15,7 +15,7 @@
             <mat-chip>{{ bid.tickets }}</mat-chip>
           </mat-chip-list>
         </div>
-        <mat-divider></mat-divider>
+        <mat-divider *ngIf="i !== bids.length - 1"></mat-divider>
       </div>
     </mat-card>
   </div>

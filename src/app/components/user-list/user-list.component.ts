@@ -26,8 +26,13 @@ export class UserListComponent implements OnInit {
   }
 
   getAvatar() {
-    // console.log(avatars);
-    // console.log(this.avatar);
-    return this.avatar;
+    let avatarIndx = localStorage.getItem('avatar');
+
+    return avatars[avatarIndx];
+  }
+
+  getUsername() {
+    let username = localStorage.getItem('username');
+    return username;
   }
 }

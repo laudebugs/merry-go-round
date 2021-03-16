@@ -6,7 +6,7 @@ export interface User {
 }
 
 export class Credentials {
-  constructor(private username: string, private password: string) {}
+  constructor(public username: string, private password: string) {}
 }
 
 export class Product {

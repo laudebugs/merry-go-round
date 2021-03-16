@@ -45,7 +45,16 @@ export class SignUpComponent implements OnInit {
       if (token !== null) {
         localStorage.setItem('token', token);
         TODO: "Work on this - using 'ActivateRoute' and all.";
-        this.router.navigateByUrl('');
+
+        this.authService
+          .getUser(user.username)
+          .valueChanges.subscribe((req: any) => {
+            let user = req.data.getUser;
+            localStorage.setItem('username', user.username);
+            localStorage.setItem('avatar', user.avatar);
+            localStorage.setItem('email', user.email);
+            this.router.navigateByUrl('');
+          });
       }
     });
   }

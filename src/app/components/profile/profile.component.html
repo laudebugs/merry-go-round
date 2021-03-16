@@ -1,12 +1,12 @@
 <div>
   <div class="profile">
     <div class="dp">
-      <img [src]="imageUrl" />
+      <img src="../../../assets/dps/{{ getAvatar() }}" />
     </div>
     <div class="details">
-      <h3>Carolyne Richardson</h3>
+      <h3>{{ getUsername() }}</h3>
       <hr />
-      <h4>cr7</h4>
+      <p>{{ getEmail() }}</p>
     </div>
   </div>
 </div>

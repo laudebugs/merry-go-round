@@ -27,6 +27,8 @@ export class AuthService {
   }
 
   signIn(credentials: Credentials) {
+    let username = credentials.username;
+
     return this.apollo.mutate({
       mutation: gql`
         mutation SignIn($credentials: Credentials!) {
@@ -38,7 +40,15 @@ export class AuthService {
   }
   getUser(username: String) {
     return this.apollo.watchQuery({
-      query: gql``,
+      query: gql`
+        query GetUser($username: String!) {
+          getUser(username: $username) {
+            username
+            email
+            avatar
+          }
+        }
+      `,
       variables: { username },
     });
   }
