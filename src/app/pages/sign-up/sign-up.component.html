@@ -64,8 +64,15 @@
         Finish
       </button>
     </div>
-    <p>
-      Have an account already? <a [routerLink]="[ '/signin', ]">Sign in here</a>
-    </p>
+    <div class="more">
+      <p>
+        Have an account already?
+        <a [routerLink]="[ '/signin', ]">Sign in here</a>
+      </p>
+      <p>
+        Forgot credentials?
+        <a [routerLink]="[ '/reset', ]">Reset password</a>
+      </p>
+    </div>
   </div>
 </div>

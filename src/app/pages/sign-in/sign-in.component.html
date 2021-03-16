@@ -27,6 +27,16 @@
         sign in
       </button>
     </div>
-    Don't have an account? <a [routerLink]="[ '/signup', ]">Sign up here</a>
+
+    <div class="more">
+      <p>
+        Don't have an account?
+        <a [routerLink]="[ '/signup', ]">Sign up here</a>
+      </p>
+      <p>
+        Forgot credentials?
+        <a [routerLink]="[ '/reset', ]">Reset password</a>
+      </p>
+    </div>
   </div>
 </div>
