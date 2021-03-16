@@ -1,8 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AngularStickyThingsModule } from '@w11k/angular-sticky-things';
 import { Material } from 'src/libs';
 import { GeneralHeaderComponent } from './general-header/general-header.component';
+import { GiftAreaComponent } from './gift-area/gift-area.component';
 import { PaletteComponent } from './palette/palette.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { ProductComponent } from './product/product.component';
@@ -21,8 +23,14 @@ import { YourItemComponent } from './your-item/your-item.component';
     PaletteComponent,
     GeneralHeaderComponent,
     SecondaryHeaderComponent,
+    GiftAreaComponent,
   ],
-  imports: [CommonModule, Material, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    Material,
+    ReactiveFormsModule,
+    AngularStickyThingsModule,
+  ],
   exports: [
     ProductComponent,
     ProductListComponent,
@@ -32,6 +40,7 @@ import { YourItemComponent } from './your-item/your-item.component';
     PaletteComponent,
     GeneralHeaderComponent,
     SecondaryHeaderComponent,
+    GiftAreaComponent,
   ],
 })
 export class ComponentsModule {}
