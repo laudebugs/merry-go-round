@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AngularStickyThingsModule } from '@w11k/angular-sticky-things';
 import { SignInComponent } from 'src/app/pages/sign-in/sign-in.component';
 import { SignUpComponent } from 'src/app/pages/sign-up/sign-up.component';
 import { Material } from 'src/libs';
@@ -26,6 +27,7 @@ import { ProductService } from './services/product/product.service';
     ReactiveFormsModule,
     HttpClientModule,
     GraphQLModule,
+    AngularStickyThingsModule,
   ],
   exports: [Material],
   providers: [AuthService, ProductService, BidService],

@@ -1,4 +1,4 @@
-<mat-drawer-container class="container" hasBackdrop="true">
+<mat-drawer-container #spacer class="container" hasBackdrop="true">
   <mat-drawer #drawer mode="push">
     <mat-card>
       <profile></profile>
@@ -35,7 +35,7 @@
         ></product-list>
       </div>
       <div class="user">
-        <user-list [products]="products" [bids]="bids"></user-list>
+        <user-list stickyThing [products]="products" [bids]="bids"></user-list>
       </div>
     </div>
   </mat-drawer-content>
