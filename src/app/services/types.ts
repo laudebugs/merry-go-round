@@ -2,6 +2,7 @@ export interface User {
   username: string;
   email: string;
   password: string;
+  avatar: number;
 }
 
 export class Credentials {

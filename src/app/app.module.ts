@@ -11,13 +11,20 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ComponentsModule } from './components/components.module';
 import { HomeComponent } from './pages/home/home.component';
+import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
 import { AuthService } from './services/auth/auth.service';
 import { BidService } from './services/bid/bid.service';
 import { GraphQLModule } from './services/graphql/graphql.module';
 import { ProductService } from './services/product/product.service';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, SignInComponent, SignUpComponent],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    SignInComponent,
+    SignUpComponent,
+    ResetPasswordComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,

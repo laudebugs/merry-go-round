@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AngularStickyThingsModule } from '@w11k/angular-sticky-things';
 import { Material } from 'src/libs';
+import { AvatarComponent } from './avatar/avatar.component';
 import { GeneralHeaderComponent } from './general-header/general-header.component';
 import { GiftAreaComponent } from './gift-area/gift-area.component';
 import { PaletteComponent } from './palette/palette.component';
@@ -24,6 +25,7 @@ import { YourItemComponent } from './your-item/your-item.component';
     GeneralHeaderComponent,
     SecondaryHeaderComponent,
     GiftAreaComponent,
+    AvatarComponent,
   ],
   imports: [
     CommonModule,
@@ -41,6 +43,7 @@ import { YourItemComponent } from './your-item/your-item.component';
     GeneralHeaderComponent,
     SecondaryHeaderComponent,
     GiftAreaComponent,
+    AvatarComponent,
   ],
 })
 export class ComponentsModule {}

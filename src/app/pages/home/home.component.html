@@ -28,11 +28,14 @@
     <div class="content">
       <div class="product">
         <secondary-header [tickets]="tickets"></secondary-header>
-        <product-list
-          (bidsChange)="this.bids = $event"
-          (ticketsChange)="this.tickets = $event"
-          (productsChange)="this.products = $event"
-        ></product-list>
+        <div class="enclosure" #spacer>
+          <product-list
+            (bidsChange)="this.bids = $event"
+            (ticketsChange)="this.tickets = $event"
+            (productsChange)="this.products = $event"
+          ></product-list>
+          <gift-area></gift-area>
+        </div>
       </div>
       <div class="user">
         <user-list stickyThing [products]="products" [bids]="bids"></user-list>

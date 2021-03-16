@@ -27,7 +27,6 @@ export class AuthService {
   }
 
   signIn(credentials: Credentials) {
-    console.log(credentials);
     return this.apollo.mutate({
       mutation: gql`
         mutation SignIn($credentials: Credentials!) {
@@ -35,6 +34,22 @@ export class AuthService {
         }
       `,
       variables: { credentials },
+    });
+  }
+  getUser(username: String) {
+    return this.apollo.watchQuery({
+      query: gql``,
+      variables: { username },
+    });
+  }
+  resetPassword(email: string) {
+    return this.apollo.mutate({
+      mutation: gql`
+        mutation ResetPassword($email: String!) {
+          resetPassword(email: $email)
+        }
+      `,
+      variables: { email },
     });
   }
 }

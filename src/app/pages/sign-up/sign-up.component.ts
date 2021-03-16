@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { avatars } from 'src/app/components/avatar/avatars';
 import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
@@ -36,6 +37,7 @@ export class SignUpComponent implements OnInit {
       username: this.forms.get('username').value,
       password: this.forms.get('password').value,
       email: this.forms.get('email').value,
+      avatar: Math.floor(Math.random() * avatars.length),
     };
     this.authService.signUp(user).subscribe((data: any) => {
       this._snackBar.dismiss();

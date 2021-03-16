@@ -17,7 +17,8 @@ div.main {
     img {
       width: 40px;
       border-radius: 20px;
-      box-shadow: 0px 1px 2px 2px var(--primary);
+      border: 1px solid var(--primary);
+      // box-shadow: 0px 1px 2px 2px var(--primary);
     }
   }
   div.bids {

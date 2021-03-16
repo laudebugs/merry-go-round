@@ -50,16 +50,30 @@ mat-drawer-content {
     display: flex;
     width: 95%;
     padding: 0 2.5% 0 2.5%;
+
     div.product {
       width: 77.5%;
       padding-right: 2.5%;
-
       secondary-header {
         width: 100%;
       }
-      product-list {
-        width: 60%;
-        display: inline-block;
+      div.enclosure {
+        display: flex;
+        product-list {
+          width: 70%;
+          display: inline-block;
+        }
+        gift-area {
+          width: 30%;
+          display: inline-block;
+          justify-self: center;
+          padding-top: 15vh;
+          div {
+            svg {
+              width: 100%;
+            }
+          }
+        }
       }
     }
     div.user {
