@@ -7,8 +7,9 @@ import {
 import { setContext } from '@apollo/client/link/context';
 import { APOLLO_OPTIONS } from 'apollo-angular';
 import { HttpLink } from 'apollo-angular/http';
+import { environment } from '../../../environments/environment';
 
-const uri = 'http://localhost:7000/graphql'; // <-- add the URL of the GraphQL server here
+const uri = `${environment.endpoint}/graphql`; // <-- add the URL of the GraphQL server here
 const subsUri = 'ws://localhost:7000/subs';
 
 export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
