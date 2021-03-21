@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Bid, Product } from 'src/app/services/types';
 
 @Component({
@@ -10,9 +11,14 @@ export class HomeComponent implements OnInit {
   tickets!: number;
   bids!: Bid[];
   products!: Product[];
-  constructor() {}
+  constructor(private router: Router) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      this.router.navigateByUrl('');
+    }
+  }
 
   update(event) {
     console.log(event);

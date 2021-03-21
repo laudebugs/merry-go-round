@@ -13,11 +13,20 @@
           </div>
         </div>
         <div class="more__actions">
-          <mat-icon style="color: var(--grey)">favorite</mat-icon>
+          <mat-icon
+            (click)="likeProduct(product)"
+            [ngStyle]="{ color: product.liked ? 'var(--like)' : 'var(--grey)' }"
+            style="color: var(--grey)"
+            >favorite</mat-icon
+          >
         </div>
         <mat-card class="product__details">
-          <div class="no__bids">bids: 0</div>
-          <div class="average__bids">avg bid: 2tckts</div>
+          <div class="no__bids">
+            <p>bids: {{ product.number_bids }}</p>
+          </div>
+          <div class="average__bids">
+            <p>avg bid: {{ product.ave_bid.toFixed(2) }}</p>
+          </div>
           <div class="product__winner">
             winner
             <mat-chip-list>
