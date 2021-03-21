@@ -8,12 +8,12 @@ import { AdminComponent } from './pages/admin/admin.component';
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
 const routes: Routes = [
   {
-    path: '',
+    path: 'ruf-coffee-house',
     component: HomeComponent,
     pathMatch: 'full',
   },
   {
-    path: 'signin',
+    path: '',
     component: SignInComponent,
   },
   {

@@ -1,14 +1,41 @@
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { Apollo, gql } from 'apollo-angular';
+import { Apollo, gql, QueryRef, Subscription } from 'apollo-angular';
 import { Bid } from '../types';
 
+export class newBidSub extends Subscription {
+  BIDS_SUBSCRIPTION = gql`
+    subscription BidAdded($productId: String) {
+      bidAdded(productId: $productId) {
+        productId
+        tickets
+      }
+    }
+  `;
+}
+
+const getBidsQuery = gql`
+  query GetNumberBids($productId: String) {
+    getNumberBid(productId: $productId) {
+      tickets
+    }
+  }
+`;
 @Injectable({
   providedIn: 'root',
 })
 export class BidService {
+  bidsQuery: QueryRef<any>;
   constructor(private apollo: Apollo) {}
 
+  getAllBids(productId: String): QueryRef<any> {
+    return this.apollo.watchQuery({
+      query: getBidsQuery,
+      variables: { productId: productId },
+    });
+  }
+
+  subToBids() {}
   makeBid(bid: Bid) {
     const helper = new JwtHelperService();
     const decodedToken = helper.decodeToken(localStorage.getItem('token'));

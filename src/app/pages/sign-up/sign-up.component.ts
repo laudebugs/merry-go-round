@@ -53,7 +53,7 @@ export class SignUpComponent implements OnInit {
             localStorage.setItem('username', user.username);
             localStorage.setItem('avatar', user.avatar);
             localStorage.setItem('email', user.email);
-            this.router.navigateByUrl('');
+            this.router.navigateByUrl('ruf-coffee-house');
           });
       }
     });

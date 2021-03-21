@@ -51,6 +51,7 @@ export class SignInComponent implements OnInit {
         this.loading = false;
         this._snackBar.dismiss();
         const token = res.data.signin;
+        console.log(token);
         if (token !== null) {
           localStorage.setItem('token', token);
           TODO: "Work on this - using 'ActivateRoute' and all.";
@@ -60,7 +61,7 @@ export class SignInComponent implements OnInit {
             localStorage.setItem('username', user.username);
             localStorage.setItem('avatar', user.avatar);
             localStorage.setItem('email', user.email);
-            this.router.navigateByUrl('');
+            this.router.navigateByUrl('ruf-coffee-house');
           });
         }
       });

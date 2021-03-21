@@ -48,13 +48,20 @@ mat-card.product__details {
   display: inline-flex;
   flex-direction: column;
   align-items: stretch;
+  justify-content: center;
   // height: 100%;
 
   div.average__bids,
   div.no__bids {
-    border-bottom: 1px solid black;
     width: 95%;
     flex: 1;
+    height: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  div.average__bids {
+    border-bottom: 1px solid black;
   }
   div.product__winner {
     flex: 2;

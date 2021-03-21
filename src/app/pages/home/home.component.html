@@ -23,12 +23,12 @@
       >
         <mat-icon>menu</mat-icon>
       </button>
-      <h1>MERRY GO ROUND</h1>
+      <h1>RUF Coffee House (Pandemic Edition)</h1>
     </mat-toolbar>
-    <div class="content">
+    <div class="content" #spacer>
       <div class="product">
         <secondary-header [tickets]="tickets"></secondary-header>
-        <div class="enclosure" #spacer>
+        <div class="enclosure">
           <product-list
             (bidsChange)="this.bids = $event"
             (ticketsChange)="this.tickets = $event"
