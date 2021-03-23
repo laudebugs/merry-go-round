@@ -15,13 +15,21 @@ export class SecondaryHeaderComponent implements OnInit {
   constructor() {}
 
   @Input()
-  messages!: Message[];
+  messages: Message[] = [];
   ngOnInit(): void {}
 
   getUnreadCount() {
-    return this.messages.filter((msg) => !msg.seen).length;
+    if (!!this.messages) {
+      return this.messages.filter((msg) => !msg.seen).length;
+    } else return 0;
   }
   seeMessage(msg) {
     msg.seen = true;
+  }
+
+  getMessages() {
+    if (!!this.messages) {
+      return this.messages.length;
+    } else return 0;
   }
 }

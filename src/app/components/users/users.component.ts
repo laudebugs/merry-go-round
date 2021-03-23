@@ -73,16 +73,18 @@ export class UsersComponent implements OnInit {
         pollInterval: 500,
       })
       .valueChanges.subscribe(({ data, loading }: any) => {
-        let users = data.getAllUsers;
-        this.users = users.map((user) => {
-          return new User(
-            user.username,
-            user.email,
-            user.avatar,
-            user.tickets,
-            user.totalTickets
-          );
-        });
+        if (!!data) {
+          let users = data.getAllUsers;
+          this.users = users.map((user) => {
+            return new User(
+              user.username,
+              user.email,
+              user.avatar,
+              user.tickets,
+              user.totalTickets
+            );
+          });
+        }
       });
   }
 
