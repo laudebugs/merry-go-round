@@ -35,11 +35,13 @@
         <secondary-header
           [roles]="roles"
           [tickets]="tickets"
+          [messages]="messages"
         ></secondary-header>
         <mat-tab-group mat-align-tabs="start">
           <mat-tab label="Items">
             <div class="enclosure">
               <product-list
+                (messagesChange)="this.messages = $event"
                 (allBidsChange)="this.allBids = $event"
                 (bidsChange)="this.bids = $event"
                 (ticketsChange)="this.tickets = $event"

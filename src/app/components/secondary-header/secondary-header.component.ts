@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Message } from '../../services/types';
 
 @Component({
   selector: 'secondary-header',
@@ -13,5 +14,14 @@ export class SecondaryHeaderComponent implements OnInit {
   roles!: string[];
   constructor() {}
 
+  @Input()
+  messages!: Message[];
   ngOnInit(): void {}
+
+  getUnreadCount() {
+    return this.messages.filter((msg) => !msg.seen).length;
+  }
+  seeMessage(msg) {
+    msg.seen = true;
+  }
 }

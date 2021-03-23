@@ -44,3 +44,11 @@ export class Bid {
     public prev_value: number = 0
   ) {}
 }
+
+export class Message {
+  constructor(
+    public content: string,
+    public seen: boolean,
+    public icon: string
+  ) {}
+}

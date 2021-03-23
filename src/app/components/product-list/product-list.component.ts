@@ -4,6 +4,7 @@ import { Apollo, gql, QueryRef } from 'apollo-angular';
 import { BidService } from 'src/app/services/bid/bid.service';
 import { ProductService } from 'src/app/services/product/product.service';
 import { Bid, Product } from './../../services/types';
+import { Message } from '../../services/types';
 
 const getBidsQuery = gql`
   query GetAllBids {
@@ -54,10 +55,16 @@ export class ProductListComponent implements OnInit {
   allBidsChange = new EventEmitter<Bid[]>();
 
   @Output()
-  tickets: number = 0;
+  tickets: number = -1;
 
   @Output()
   ticketsChange = new EventEmitter<number>();
+
+  @Output()
+  messages: Message[] = [];
+
+  @Output()
+  messagesChange = new EventEmitter<Message[]>();
 
   @Output()
   bidsChange = new EventEmitter<Bid[]>();
@@ -130,9 +137,21 @@ export class ProductListComponent implements OnInit {
       })
       .valueChanges.subscribe(({ data, loading }: any) => {
         let user = data.getUser;
-        console.log(user);
+        let newTicks = user.tickets - this.tickets;
+        if (this.tickets !== -1) {
+          this.messages.push(
+            new Message(
+              `You have ${newTicks} more ticket${newTicks > 1 ? 's' : ''}`,
+              false,
+              'money'
+            )
+          );
+        }
+
         this.tickets = user.tickets;
         this.ticketsChange.emit(this.tickets);
+
+        this.messagesChange.emit(this.messages);
       });
   }
   getUserBids() {

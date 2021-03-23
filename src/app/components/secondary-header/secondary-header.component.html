@@ -7,6 +7,32 @@
     <button mat-raised-button color="red">End Bidding</button>
   </div>
   <div class="message">
-    <mat-icon> message</mat-icon>
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon
+        [matBadgeHidden]="getUnreadCount() == 0"
+        matBadge="{{ getUnreadCount() }}"
+        matBadgeColor="accent"
+      >
+        message</mat-icon
+      >
+    </button>
   </div>
+  <mat-menu #menu="matMenu">
+    <ng-container *ngIf="messages.length > 0; else noMessageContainer">
+      <div
+        (click)="seeMessage(message)"
+        mat-menu-item
+        *ngFor="let message of messages"
+      >
+        <mat-icon> {{ message.icon }}</mat-icon>
+        <span
+          [ngStyle]="{ color: message.seen ? 'var(--grey)' : 'var(--primary)' }"
+          >{{ message.content }}</span
+        >
+      </div>
+    </ng-container>
+    <ng-template #noMessageContainer>
+      <div mat-menu-item>No new notifications 🦒</div>
+    </ng-template>
+  </mat-menu>
 </div>

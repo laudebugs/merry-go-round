@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Bid, Product } from 'src/app/services/types';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { Message } from '../../services/types';
 
 @Component({
   selector: 'home',
@@ -18,6 +19,7 @@ export class HomeComponent implements OnInit {
   @Output()
   roles: string[] = [];
   selected: string = 'users';
+  messages!: Message[];
 
   constructor(private router: Router, private auth: AuthService) {
     const token = localStorage.getItem('token');

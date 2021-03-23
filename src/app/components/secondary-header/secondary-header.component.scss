@@ -52,3 +52,10 @@ h3 {
 p {
   font-family: "Now Regular";
 }
+mat-menu {
+  div {
+    text-align: center;
+    width: 100%;
+    border: 1px solid black;
+  }
+}
