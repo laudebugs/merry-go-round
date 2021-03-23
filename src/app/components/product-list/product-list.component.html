@@ -1,11 +1,5 @@
 <div>
-  <mat-card
-    *ngFor="let product of products"
-    class="product"
-    [ngStyle]="{
-      'background-color': getBidStatus(product._id) ? '#FFF3E2' : ''
-    }"
-  >
+  <mat-card *ngFor="let product of products" class="product">
     <mat-card-content>
       <div class="product__frame">
         <div class="product">

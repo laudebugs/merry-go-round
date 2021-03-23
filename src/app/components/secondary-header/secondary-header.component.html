@@ -1,8 +1,15 @@
 <div class="menu-bar">
+  <div class="routes">
+    <h2 class="selected">Items</h2>
+    <h2 [ngStyle]="{ visibility: selected === 'users' ? 'visible' : 'hidden' }">
+      Users
+    </h2>
+    <h2>Draw</h2>
+  </div>
   <div class="tickets">
     <h3>Tickets: {{ tickets }}</h3>
   </div>
-  <div *ngIf="roles.includes('Admin')" class="buttons">
+  <div class="buttons">
     <button mat-raised-button color="red">End Bidding</button>
   </div>
 </div>

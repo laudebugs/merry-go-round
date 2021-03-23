@@ -6,11 +6,9 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./secondary-header.component.scss'],
 })
 export class SecondaryHeaderComponent implements OnInit {
+  selected: string = 'users';
   @Input()
   tickets: number = 5;
-
-  @Input()
-  roles!: string[];
   constructor() {}
 
   ngOnInit(): void {}
