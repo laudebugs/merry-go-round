@@ -13,7 +13,7 @@ import { environment } from '../../../environments/environment';
 import { getMainDefinition } from '@apollo/client/utilities';
 
 const uri = `${environment.endpoint}/graphql`; // <-- add the URL of the GraphQL server here
-const subsUri = 'ws://localhost:7000/subs';
+const subsUri = `${environment.ws}/subs`;
 
 export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
   const ws = new WebSocketLink({

@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { Apollo, gql } from 'apollo-angular';
 import { Credentials, User } from '../types';
@@ -5,7 +6,7 @@ import { Credentials, User } from '../types';
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private apollo: Apollo) {}
+  constructor(private apollo: Apollo, private router: Router) {}
   /**
    *
    * @param user - a user object
@@ -24,11 +25,14 @@ export class AuthService {
 
   signOut() {
     TODO: 'Delete token from local storage';
+    console.log('here');
+
+    localStorage.clear();
+    localStorage.setItem('palette', 'merry');
+    this.router.navigateByUrl('/signin');
   }
 
   signIn(credentials: Credentials) {
-    let username = credentials.username;
-
     return this.apollo.mutate({
       mutation: gql`
         mutation SignIn($credentials: Credentials!) {
@@ -38,18 +42,35 @@ export class AuthService {
       variables: { credentials },
     });
   }
-  getUser(username: String) {
+  getUser(email: String) {
     return this.apollo.watchQuery({
       query: gql`
-        query GetUser($username: String!) {
-          getUser(username: $username) {
+        query GetUser($email: String!) {
+          getUser(email: $email) {
             username
             email
             avatar
+            tickets
           }
         }
       `,
-      variables: { username },
+      variables: { email },
+    });
+  }
+
+  getAllUsers() {
+    return this.apollo.watchQuery({
+      query: gql`
+        query GetAllUsers {
+          getAllUsers {
+            username
+            email
+            avatar
+            tickets
+            bids
+          }
+        }
+      `,
     });
   }
   resetPassword(email: string) {

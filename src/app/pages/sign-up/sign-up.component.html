@@ -4,7 +4,7 @@
     <h2>Sign Up</h2>
     <div class="fillForm" [formGroup]="forms">
       <mat-form-field appearance="fill">
-        <mat-label>Enter your Username</mat-label>
+        <mat-label>Pick a Username</mat-label>
 
         <input
           formControlName="username"
@@ -23,43 +23,6 @@
         />
       </mat-form-field>
 
-      <mat-form-field appearance="fill">
-        <mat-label>Enter your password</mat-label>
-        <input
-          formControlName="password"
-          placeholder="password"
-          matInput
-          [type]="hide ? 'password' : 'text'"
-        />
-        <button
-          mat-icon-button
-          matSuffix
-          (click)="hide = !hide"
-          [attr.aria-label]="'Hide password'"
-          [attr.aria-pressed]="hide"
-        >
-          <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
-        </button>
-        <mat-hint>At least 6 characters</mat-hint>
-      </mat-form-field>
-      <mat-form-field appearance="fill">
-        <mat-label>Confirm your password</mat-label>
-        <input
-          formControlName="password"
-          placeholder="confirm password"
-          matInput
-          [type]="hide ? 'password' : 'text'"
-        />
-        <button
-          mat-icon-button
-          matSuffix
-          (click)="hide = !hide"
-          [attr.aria-label]="'Hide password'"
-          [attr.aria-pressed]="hide"
-        >
-          <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
-        </button>
-      </mat-form-field>
       <button (click)="signUp()" class="signUpBtn" mat-stroked-button>
         Finish
       </button>

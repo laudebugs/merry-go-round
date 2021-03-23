@@ -34,7 +34,7 @@ export class SignInComponent implements OnInit {
       floatLabel: this.floatLabelControl,
     });
     this.form = new FormGroup({
-      username: new FormControl('', [Validators.required]),
+      email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required]),
     });
   }
@@ -43,24 +43,26 @@ export class SignInComponent implements OnInit {
   submit() {
     this.openSnackBar('Logging in', '🤹');
     this.loading = true;
-    const user = this.form.get('username').value;
+    const email = this.form.get('email').value;
     const pass = this.form.get('password').value;
     this.authService
-      .signIn(new Credentials(user, pass))
+      .signIn(new Credentials(email, pass))
       .subscribe((res: any) => {
         this.loading = false;
         this._snackBar.dismiss();
         const token = res.data.signin;
-        console.log(token);
+
         if (token !== null) {
           localStorage.setItem('token', token);
           TODO: "Work on this - using 'ActivateRoute' and all.";
-
-          this.authService.getUser(user).valueChanges.subscribe((req: any) => {
+          console.log(email);
+          this.authService.getUser(email).valueChanges.subscribe((req: any) => {
+            console.log(req);
             let user = req.data.getUser;
+            console.log(user);
             localStorage.setItem('username', user.username);
-            localStorage.setItem('avatar', user.avatar);
             localStorage.setItem('email', user.email);
+            localStorage.setItem('avatar', user.avatar);
             this.router.navigateByUrl('ruf-coffee-house');
           });
         }

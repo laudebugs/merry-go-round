@@ -38,9 +38,8 @@ export class BidService {
   subToBids() {}
   makeBid(bid: Bid) {
     const helper = new JwtHelperService();
-    const decodedToken = helper.decodeToken(localStorage.getItem('token'));
-    bid.user = decodedToken.username;
-    console.log();
+    const decodedToken = helper.decodeToken();
+    bid.user = localStorage.getItem('username');
     return this.apollo.mutate({
       mutation: gql`
         mutation MakeBid($bid: BidInput!) {
@@ -49,6 +48,8 @@ export class BidService {
             productId
             tickets
             user
+            prev_value
+            submitted
           }
         }
       `,
@@ -92,8 +93,8 @@ export class BidService {
   getUserBids(username: string) {
     return this.apollo.watchQuery({
       query: gql`
-        query GetUserBids($username: String) {
-          getUserBid(username: $username) {
+        query GetUserBids($username: String!) {
+          getUserBids(username: $username) {
             _id
             productId
             tickets
@@ -108,7 +109,7 @@ export class BidService {
   getProductBids(productId: string) {
     return this.apollo.watchQuery({
       query: gql`
-        query GetProductBids($productId: String) {
+        query GetProductBids($productId: String!) {
           getProductBid(productId: $productId) {
             _id
             productId
