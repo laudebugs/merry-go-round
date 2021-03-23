@@ -20,20 +20,28 @@ div.menu-bar {
     padding-right: 3%;
   }
   div.tickets {
-    width: 20%;
+    width: 30%;
     display: inline-block;
-    text-align: right;
+    text-align: center;
   }
   div.buttons {
     display: flex;
     justify-content: flex-end;
-    width: 40%;
+    width: 60%;
     align-items: center;
     height: 100%;
     button.mat-raised-button {
       background-color: var(--red);
       color: white;
     }
+  }
+  div.message {
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+    width: 5%;
+    align-items: center;
+    height: 100%;
   }
 }
 h1,

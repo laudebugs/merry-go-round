@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Bid, Product } from 'src/app/services/types';
+import { Bid, Product, User } from 'src/app/services/types';
 import { avatars } from '../avatar/avatars';
 
 @Component({
@@ -34,5 +34,10 @@ export class UserListComponent implements OnInit {
   getUsername() {
     let username = localStorage.getItem('username');
     return username;
+  }
+  getValidBids() {
+    return this.bids
+      .filter((bid) => bid.tickets > 0 && bid.submitted == bid.tickets)
+      .sort((a, b) => b.tickets - a.tickets);
   }
 }

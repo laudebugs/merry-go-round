@@ -1,7 +1,18 @@
-export interface User {
-  username: string;
-  email: string;
-  avatar: number;
+export class User {
+  public addTickets?: number;
+
+  constructor(
+    public username: string,
+    public email: string,
+    public avatar: number,
+    public tickets?: number,
+    public totalTickets?: number,
+    public bids?: [string],
+    public award?: number,
+    public roles?: [string]
+  ) {
+    this.addTickets = 0;
+  }
 }
 
 export class Credentials {

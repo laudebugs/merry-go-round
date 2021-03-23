@@ -47,7 +47,11 @@ export class ProductListComponent implements OnInit {
   @Output()
   userBids: Bid[] = [];
 
+  @Output()
   allBids: Bid[] = [];
+
+  @Output()
+  allBidsChange = new EventEmitter<Bid[]>();
 
   @Output()
   tickets: number = 0;
@@ -107,11 +111,26 @@ export class ProductListComponent implements OnInit {
   }
 
   getUserTickets() {
-    this.authService
-      .getUser(localStorage.getItem('email'))
-      .valueChanges.subscribe((result: any) => {
-        let user = result.data.getUser;
-
+    const getUserQuery = gql`
+      query GetUser($email: String!) {
+        getUser(email: $email) {
+          username
+          email
+          avatar
+          tickets
+          totalTickets
+        }
+      }
+    `;
+    this.apollo
+      .watchQuery({
+        query: getUserQuery,
+        variables: { email: localStorage.getItem('email') },
+        pollInterval: 500,
+      })
+      .valueChanges.subscribe(({ data, loading }: any) => {
+        let user = data.getUser;
+        console.log(user);
         this.tickets = user.tickets;
         this.ticketsChange.emit(this.tickets);
       });
@@ -148,6 +167,7 @@ export class ProductListComponent implements OnInit {
         this.products.map((product) => {
           this.calcProdStats(product._id, 1);
         });
+        this.allBidsChange.emit(this.allBids.filter((bid) => bid.tickets > 0));
       });
     });
   }
@@ -169,6 +189,8 @@ export class ProductListComponent implements OnInit {
         } else {
           this.allBids = [...this.allBids, ...newBid];
         }
+        console.log(this.allBids.filter((bid) => bid.tickets > 0));
+        this.allBidsChange.emit(this.allBids.filter((bid) => bid.tickets > 0));
         this.calcProdStats(newBid[0].productId, state);
         return prev;
       },
@@ -196,6 +218,7 @@ export class ProductListComponent implements OnInit {
     thisProduct.ave_bid = ave;
     thisProduct.number_bids = totalBids;
     thisProduct.total_tickets = totalTickets;
+    this.allBidsChange.emit(this.allBids.filter((bid) => bid.tickets > 0));
   }
 
   updateBidTickets(product: Product, choice: number) {

@@ -51,6 +51,7 @@ export class AuthService {
             email
             avatar
             tickets
+            totalTickets
           }
         }
       `,
@@ -68,6 +69,7 @@ export class AuthService {
             avatar
             tickets
             bids
+            totalTickets
           }
         }
       `,

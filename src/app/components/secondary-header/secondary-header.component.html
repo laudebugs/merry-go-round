@@ -2,7 +2,11 @@
   <div class="tickets">
     <h3>Tickets: {{ tickets }}</h3>
   </div>
-  <div *ngIf="roles.includes('Admin')" class="buttons">
+
+  <div *ngIf="roles.includes('ADMIN')" class="buttons">
     <button mat-raised-button color="red">End Bidding</button>
+  </div>
+  <div class="message">
+    <mat-icon> message</mat-icon>
   </div>
 </div>

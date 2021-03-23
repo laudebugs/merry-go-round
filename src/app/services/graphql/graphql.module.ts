@@ -16,10 +16,15 @@ const uri = `${environment.endpoint}/graphql`; // <-- add the URL of the GraphQL
 const subsUri = `${environment.ws}/subs`;
 
 export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
+  const token = localStorage.getItem('token');
+
   const ws = new WebSocketLink({
     uri: subsUri,
     options: {
       reconnect: true,
+      connectionParams: {
+        authorization: token ? `${token}` : '',
+      },
     },
   });
 
@@ -30,8 +35,6 @@ export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
   }));
 
   const auth = setContext((operation, context) => {
-    const token = localStorage.getItem('token');
-
     if (token === null) {
       return {};
     } else {
@@ -42,7 +45,7 @@ export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
       };
     }
   });
-  const http = httpLink.create({ uri });
+  const http = ApolloLink.from([basic, auth, httpLink.create({ uri })]);
 
   const newLink = split(
     ({ query }) => {
@@ -54,10 +57,14 @@ export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
     ws,
     http
   );
-  const link = ApolloLink.from([basic, auth]);
+
   const cache = new InMemoryCache();
+
   return {
     link: newLink,
+    headers: {
+      authorization: token ? `${token}` : '',
+    },
     cache,
     defaultOptions: {
       watchQuery: {

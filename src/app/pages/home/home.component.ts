@@ -13,6 +13,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 export class HomeComponent implements OnInit {
   tickets!: number;
   bids!: Bid[];
+  allBids!: Bid[];
   products!: Product[];
   @Output()
   roles: string[] = [];

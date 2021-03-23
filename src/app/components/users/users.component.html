@@ -4,32 +4,61 @@
 
   <!-- Position Column -->
   <ng-container matColumnDef="position">
-    <th mat-header-cell *matHeaderCellDef>No.</th>
-    <td mat-cell *matCellDef="let element">{{ element.position }}</td>
+    <th mat-header-cell *matHeaderCellDef><p>No.</p></th>
+    <td mat-cell *matCellDef="let user">
+      <p>{{ users.indexOf(user) + 1 }}</p>
+    </td>
   </ng-container>
 
   <!-- Name Column -->
-  <ng-container matColumnDef="name">
-    <th mat-header-cell *matHeaderCellDef>Name</th>
-    <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+  <ng-container matColumnDef="username">
+    <th mat-header-cell *matHeaderCellDef><p>username</p></th>
+    <td mat-cell *matCellDef="let user">
+      <p>{{ user.username }}</p>
+    </td>
   </ng-container>
 
   <!-- Total Tickets Column -->
-  <ng-container matColumnDef="weight">
-    <th mat-header-cell *matHeaderCellDef>Total Tickets</th>
-    <td mat-cell *matCellDef="let element">{{ element.weight }}</td>
+  <ng-container matColumnDef="totalTickets">
+    <th mat-header-cell *matHeaderCellDef><p>Total Tickets</p></th>
+    <td mat-cell *matCellDef="let user">
+      <p>{{ user.totalTickets }}</p>
+    </td>
   </ng-container>
 
   <!-- Tickets left Column -->
-  <ng-container matColumnDef="symbol">
-    <th mat-header-cell *matHeaderCellDef>Tickets left</th>
-    <td mat-cell *matCellDef="let element">{{ element.symbol }}</td>
+  <ng-container matColumnDef="ticketsLeft">
+    <th mat-header-cell *matHeaderCellDef><p>Tickets left</p></th>
+    <td mat-cell *matCellDef="let user">
+      <p>{{ getUserTickets(user) }}</p>
+    </td>
   </ng-container>
 
   <!-- Bids Column -->
-  <ng-container matColumnDef="symbol">
-    <th mat-header-cell *matHeaderCellDef>Bids</th>
-    <td mat-cell *matCellDef="let element">{{ element.symbol }}</td>
+  <ng-container matColumnDef="bids">
+    <th mat-header-cell *matHeaderCellDef><p>Bids</p></th>
+    <td mat-cell *matCellDef="let user">
+      <p>{{ getUserBids(user.username) }}</p>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="addTicks">
+    <th mat-header-cell *matHeaderCellDef><p>Add</p></th>
+    <td mat-cell *matCellDef="let user">
+      <p>
+        <mat-icon (click)="addTickets(user, 0)">remove_circle_outline</mat-icon>
+        {{ "  " }}
+        <mat-icon (click)="addTickets(user, 1)">add_circle_outline</mat-icon>
+        {{ user.addTickets }}{{ "  " }}
+        <mat-icon
+          [ngStyle]="{
+            color: user.addTickets == 0 ? 'var(--grey)' : 'var(--green)'
+          }"
+          (click)="sendTickets(user)"
+          >send</mat-icon
+        >
+      </p>
+    </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
