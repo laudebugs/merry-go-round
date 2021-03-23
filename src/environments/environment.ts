@@ -5,4 +5,5 @@
 export const environment = {
   production: false,
   endpoint: 'http://localhost:7000',
+  ws: 'ws://localhost:7000',
 };

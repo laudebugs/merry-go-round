@@ -1,12 +1,11 @@
 export interface User {
   username: string;
   email: string;
-  password: string;
   avatar: number;
 }
 
 export class Credentials {
-  constructor(public username: string, private password: string) {}
+  constructor(public email: string, private password: string) {}
 }
 
 export class Product {
@@ -30,6 +29,7 @@ export class Bid {
     public productId: string,
     public tickets: number,
     public user: string,
-    public _id?: string
+    public _id: string = '-1',
+    public prev_value: number = 0
   ) {}
 }

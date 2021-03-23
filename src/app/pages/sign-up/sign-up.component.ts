@@ -35,7 +35,6 @@ export class SignUpComponent implements OnInit {
 
     const user = {
       username: this.forms.get('username').value,
-      password: this.forms.get('password').value,
       email: this.forms.get('email').value,
       avatar: Math.floor(Math.random() * avatars.length),
     };
@@ -45,9 +44,8 @@ export class SignUpComponent implements OnInit {
       if (token !== null) {
         localStorage.setItem('token', token);
         TODO: "Work on this - using 'ActivateRoute' and all.";
-
         this.authService
-          .getUser(user.username)
+          .getUser(user.email)
           .valueChanges.subscribe((req: any) => {
             let user = req.data.getUser;
             localStorage.setItem('username', user.username);

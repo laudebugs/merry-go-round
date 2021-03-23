@@ -9,7 +9,7 @@ import { ProductService } from '../services/product/product.service';
 import { AdminComponent } from './admin/admin.component';
 import { UsersComponent } from './users/users.component';
 @NgModule({
-  declarations: [YourItemComponent, UsersComponent, AdminComponent],
+  declarations: [AdminComponent],
   providers: [AuthService, ProductService, BidService],
   imports: [CommonModule, GraphQLModule, AngularStickyThingsModule],
   exports: [GraphQLModule],
