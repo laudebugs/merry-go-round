@@ -13,8 +13,6 @@ import { ProfileComponent } from './profile/profile.component';
 import { SecondaryHeaderComponent } from './secondary-header/secondary-header.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { YourItemComponent } from './your-item/your-item.component';
-import { UsersComponent } from './users/users.component';
-import { DrawComponent } from './draw/draw.component';
 
 @NgModule({
   declarations: [
@@ -28,8 +26,6 @@ import { DrawComponent } from './draw/draw.component';
     SecondaryHeaderComponent,
     GiftAreaComponent,
     AvatarComponent,
-    UsersComponent,
-    DrawComponent,
   ],
   imports: [
     CommonModule,
@@ -48,8 +44,6 @@ import { DrawComponent } from './draw/draw.component';
     SecondaryHeaderComponent,
     GiftAreaComponent,
     AvatarComponent,
-    UsersComponent,
-    DrawComponent,
   ],
 })
 export class ComponentsModule {}

@@ -1,4 +1,3 @@
-import { AuthService } from 'src/app/services/auth/auth.service';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Apollo, gql, QueryRef } from 'apollo-angular';
 import { BidService } from 'src/app/services/bid/bid.service';
@@ -10,10 +9,6 @@ const getBidsQuery = gql`
     getAllBids {
       tickets
       productId
-      prev_value
-      submitted
-      user
-      _id
     }
   }
 `;
@@ -21,12 +16,8 @@ const getBidsQuery = gql`
 const BIDS_SUBSCRIPTION = gql`
   subscription BidAdded {
     bidAdded {
-      _id
       productId
       tickets
-      user
-      prev_value
-      submitted
     }
   }
 `;
@@ -43,14 +34,12 @@ export class ProductListComponent implements OnInit {
   products!: Product[];
 
   latestProduct;
-
   @Output()
-  userBids: Bid[] = [];
+  bids: Bid[] = [];
 
   allBids: Bid[] = [];
-
   @Output()
-  tickets: number = 0;
+  tickets: number = 5;
 
   @Output()
   ticketsChange = new EventEmitter<number>();
@@ -64,7 +53,6 @@ export class ProductListComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private bidService: BidService,
-    private authService: AuthService,
     private apollo: Apollo
   ) {
     this.bidsQuery = apollo.watchQuery({
@@ -85,71 +73,56 @@ export class ProductListComponent implements OnInit {
         );
       });
       this.productsChange.emit(this.products);
-
-      // get the user's bids
-      this.getUserBids();
-
-      // get all bids
-      this.getAllBids();
-
-      // get user tickets
-      this.getUserTickets();
     });
 
     this.ticketsChange.emit(this.tickets);
     this.bidsChange.emit(
-      this.userBids
+      this.bids
         .filter((bid) => bid.tickets === bid.submitted && bid.submitted > 0)
         .sort((a, b) => b.tickets - a.tickets)
     );
+    this.bidsQuery.valueChanges.subscribe((data: any) => {
+      let allbids: Bid | any = data.data.getAllBids;
+      this.allBids = [...allbids];
+      allbids.map((bid: Bid) => {
+        this.addProductBid(bid);
+      });
+    });
 
     this.subscribeToNewBids();
   }
+  addProductBid(bid: Bid) {
+    let thisProduct = this.products.find((prod) => prod._id === bid.productId);
+    let findBid = this.allBids.find((b) => b._id === bid._id);
+    let bids = thisProduct.number_bids;
+    let tickets = thisProduct.total_tickets;
 
-  getUserTickets() {
-    this.authService
-      .getUser(localStorage.getItem('email'))
-      .valueChanges.subscribe((result: any) => {
-        let user = result.data.getUser;
+    if (bid.tickets > 0) {
+      bids += 1;
+      tickets += bid.tickets;
 
-        this.tickets = user.tickets;
-        this.ticketsChange.emit(this.tickets);
-      });
-  }
-  getUserBids() {
-    const username = localStorage.getItem('username');
-    this.bidService
-      .getUserBids(username)
-      .valueChanges.subscribe((result: any) => {
-        const bids = result.data.getUserBids;
-        const userBids = bids.map((bid) => {
-          let thisBid = new Bid(
-            bid.productId,
-            bid.tickets,
-            bid.user,
-            bid._id,
-            bid.prev_value
-          );
-          thisBid.submitted = bid.tickets;
-          return thisBid;
+      let ave = tickets / bids;
+
+      thisProduct.ave_bid = ave;
+      thisProduct.number_bids = bids;
+      thisProduct.total_tickets = tickets;
+    } else {
+      bids = 0;
+      let ave = 0;
+      let ttl = 0;
+      console.log('take away');
+
+      this.allBids
+        .filter((bid) => bid.productId === thisProduct._id && bid.tickets > 0)
+        .map((bid: Bid) => {
+          bids += 1;
+          ttl += bid.tickets;
         });
-        this.userBids = userBids;
-        this.bidsChange.emit(this.userBids);
-      });
-  }
-  getAllBids() {
-    this.bidsQuery.valueChanges.subscribe((data: any) => {
-      let recentbids: Bid | any = data.data.getAllBids;
-      this.allBids = [...recentbids];
 
-      // Calculate the average and total bids for all the products
-      this.allBids.map((bid: Bid) => {
-        // loop through all the products:
-        this.products.map((product) => {
-          this.calcProdStats(product._id, 1);
-        });
-      });
-    });
+      thisProduct.total_tickets = ttl;
+      thisProduct.number_bids = bids;
+      thisProduct.ave_bid = ttl / bids;
+    }
   }
   subscribeToNewBids() {
     this.bidsQuery.subscribeToMore({
@@ -159,54 +132,23 @@ export class ProductListComponent implements OnInit {
           return prev;
         }
         const newBid = subscriptionData.data.bidAdded;
-        let oldBid = this.allBids.find((bid) => bid._id === newBid[0]._id);
-        // if you find the old bid, replace it with the new bid.
-        let state = 0;
-        if (!!oldBid) {
-          const index = this.allBids.indexOf(oldBid);
-          this.allBids[index] = newBid[0];
-          state = 1;
-        } else {
-          this.allBids = [...this.allBids, ...newBid];
-        }
-        this.calcProdStats(newBid[0].productId, state);
+        this.addProductBid(newBid[0]);
+        this.allBids = [...this.allBids, ...newBid];
+
         return prev;
       },
     });
   }
-
-  calcProdStats(productId: String, state: number) {
-    let thisProduct = this.products.find((prod) => prod._id === productId);
-
-    // find all the bids for this product.
-    let validBids = this.allBids.filter((b: any) => b.productId == productId);
-    let totalBids = 0;
-    let totalTickets = 0;
-
-    validBids.map((bid) => {
-      if (bid.tickets > 0) {
-        // If the bid existed before -- then dont add it to the totalBids
-
-        totalBids += 1;
-        totalTickets += bid.tickets;
-      }
-    });
-
-    let ave = totalTickets / totalBids;
-    thisProduct.ave_bid = ave;
-    thisProduct.number_bids = totalBids;
-    thisProduct.total_tickets = totalTickets;
-  }
-
   updateBidTickets(product: Product, choice: number) {
-    let bid = this.userBids.find((bid) => bid.productId === product._id);
+    let bid = this.bids.find((bid) => bid.productId === product._id);
+    console.log(bid);
     switch (choice) {
       case 1:
         // If the bid was not previously made
         if (this.tickets > 0) {
           if (!bid) {
-            bid = new Bid(product._id, 1, localStorage.getItem('username'));
-            this.userBids.push(bid);
+            bid = new Bid(product._id, 1, 'me');
+            this.bids.push(bid);
           } else {
             bid.tickets += 1;
           }
@@ -233,18 +175,16 @@ export class ProductListComponent implements OnInit {
   removeTicket(product: Product) {}
 
   placeBid(_id: string) {
-    let bid = this.userBids.find((bid) => bid.productId === _id);
-
+    let bid = this.bids.find((bid) => bid.productId === _id);
     // it's not always makeBid, if the bid already exists, change the bid
+    console.log('ici: ', bid);
     this.bidService.makeBid(bid).subscribe((data) => {
       //@ts-ignore
       let bid = data.data.makeBid;
-      if (!bid) return;
-      let thisBid = this.userBids.find((b) => b.productId === bid.productId);
+      let thisBid = this.bids.find((b) => b.productId === bid.productId);
       thisBid.submitted = bid.tickets;
-      thisBid._id = bid._id;
       this.bidsChange.emit(
-        this.userBids
+        this.bids
           .filter((bid) => bid.tickets === bid.submitted && bid.submitted > 0)
           .sort((a, b) => b.tickets - a.tickets)
       );
@@ -252,7 +192,7 @@ export class ProductListComponent implements OnInit {
   }
 
   getProductBids(productId: string) {
-    let bid = this.userBids.find((bid) => bid.productId === productId);
+    let bid = this.bids.find((bid) => bid.productId === productId);
     if (!bid) {
       return 0;
     } else {
@@ -264,19 +204,11 @@ export class ProductListComponent implements OnInit {
   }
 
   getStatus(productId: string) {
-    let bid = this.userBids.find((bid) => bid.productId === productId);
+    let bid = this.bids.find((bid) => bid.productId === productId);
     if (!bid) {
       return false;
     } else {
       return bid.submitted === bid.tickets && bid.tickets !== 0;
-    }
-  }
-  getBidStatus(productId: string) {
-    let bid = this.userBids.find((bid) => bid.productId === productId);
-    if (!bid) {
-      return false;
-    } else {
-      return !(bid.submitted === bid.tickets);
     }
   }
   likeProduct(product: Product) {

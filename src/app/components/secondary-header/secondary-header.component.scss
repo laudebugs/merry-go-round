@@ -2,7 +2,7 @@ div.menu-bar {
   margin: 1% 0% 1% 0%;
   display: flex;
   align-items: flex-end;
-  justify-content: space-between;
+  justify-content: center;
   height: 6vh;
 
   // padding-bottom: 0.75%;
@@ -15,9 +15,15 @@ div.menu-bar {
   h2.selected {
     color: var(--primary);
   }
-  div.basic_routes {
-    // width: 100%;
-    padding-right: 3%;
+  div.routes {
+    display: inline-flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 40%;
+    // display: inline-block;
+    h2 {
+      padding-right: 3%;
+    }
   }
   div.tickets {
     width: 20%;
