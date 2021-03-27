@@ -72,6 +72,8 @@ export class ProductListComponent implements OnInit {
   @Output()
   productsChange = new EventEmitter<Product[]>();
 
+  likedProducts: String[] = [];
+
   constructor(
     private productService: ProductService,
     private bidService: BidService,
@@ -85,6 +87,7 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit(): void {
     this.productService.getProducts().valueChanges.subscribe((data: any) => {
+      console.log(data);
       this.products = data.data.getProducts.map((product: Product) => {
         return new Product(
           product._id,
@@ -92,7 +95,8 @@ export class ProductListComponent implements OnInit {
           product.description,
           product.photo,
           product.owner,
-          product.bid
+          product.bid,
+          product.likes
         );
       });
       this.productsChange.emit(this.products);
@@ -126,6 +130,7 @@ export class ProductListComponent implements OnInit {
           avatar
           tickets
           totalTickets
+          likedProducts
         }
       }
     `;
@@ -147,6 +152,13 @@ export class ProductListComponent implements OnInit {
             )
           );
         }
+        console.log(data);
+        let productLikes = data.getUser.likedProducts;
+        console.log(productLikes);
+        this.products.map((prod) => {
+          if (productLikes.indexOf(prod._id) === -1) prod.liked = false;
+          else prod.liked = true;
+        });
 
         this.tickets = user.tickets;
         this.ticketsChange.emit(this.tickets);
@@ -321,8 +333,5 @@ export class ProductListComponent implements OnInit {
     } else {
       return !(bid.submitted === bid.tickets);
     }
-  }
-  likeProduct(product: Product) {
-    product.liked = !product.liked;
   }
 }

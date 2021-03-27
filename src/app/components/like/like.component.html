@@ -1,0 +1,17 @@
+<span class="like__button">
+  <mat-icon
+    (click)="likeProduct(product)"
+    [ngStyle]="{
+      color: product.liked ? 'var(--like)' : 'var(--grey)'
+    }"
+    style="color: var(--grey)"
+    >favorite</mat-icon
+  >
+  <p
+    [ngStyle]="{
+      color: number_likes > 0 ? 'var(--like)' : 'var(--grey)'
+    }"
+  >
+    {{ number_likes }}
+  </p>
+</span>

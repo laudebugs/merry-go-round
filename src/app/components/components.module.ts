@@ -15,6 +15,7 @@ import { UserListComponent } from './user-list/user-list.component';
 import { YourItemComponent } from './your-item/your-item.component';
 import { UsersComponent } from './users/users.component';
 import { DrawComponent } from './draw/draw.component';
+import { LikeComponent } from './like/like.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { DrawComponent } from './draw/draw.component';
     AvatarComponent,
     UsersComponent,
     DrawComponent,
+    LikeComponent,
   ],
   imports: [
     CommonModule,
@@ -50,6 +52,7 @@ import { DrawComponent } from './draw/draw.component';
     AvatarComponent,
     UsersComponent,
     DrawComponent,
+    LikeComponent,
   ],
 })
 export class ComponentsModule {}
