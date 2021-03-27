@@ -1,6 +1,19 @@
 import { Injectable } from '@angular/core';
 import { Apollo, gql } from 'apollo-angular';
 
+export const GET_PRODUCTS_QUERY = gql`
+  query GetProducts {
+    getProducts {
+      _id
+      name
+      description
+      photo
+      owner
+      likes
+    }
+  }
+`;
+
 @Injectable({
   providedIn: 'root',
 })
@@ -9,17 +22,7 @@ export class ProductService {
 
   getProducts() {
     return this.apollo.watchQuery({
-      query: gql`
-        query GetProducts {
-          getProducts {
-            _id
-            name
-            description
-            photo
-            owner
-          }
-        }
-      `,
+      query: GET_PRODUCTS_QUERY,
     });
   }
 
@@ -37,6 +40,21 @@ export class ProductService {
         }
       `,
       variables: { productId: productId, username: username },
+    });
+  }
+
+  likeProduct(username: string, productId: string, liked: boolean) {
+    return this.apollo.mutate({
+      mutation: gql`
+        mutation LikeProduct(
+          $username: String!
+          $productId: String!
+          $liked: Boolean!
+        ) {
+          likeProduct(username: $username, productId: $productId, liked: $liked)
+        }
+      `,
+      variables: { username: username, productId: productId, liked: liked },
     });
   }
 }
