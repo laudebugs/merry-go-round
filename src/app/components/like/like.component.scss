@@ -1,0 +1,17 @@
+span.like__button {
+  display: flex;
+  align-items: flex-start;
+  height: 100%;
+
+  mat-icon {
+    font-size: 25pt;
+    height: inherit;
+  }
+  p {
+    position: relative;
+    left: 15%;
+    top: 20px;
+    height: 100%;
+    opacity: 0.75;
+  }
+}

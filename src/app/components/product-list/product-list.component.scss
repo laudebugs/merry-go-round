@@ -36,19 +36,7 @@ div.more__actions {
   height: 100%;
   display: flex;
   align-items: center;
-  span.like__button {
-    display: flex;
-    height: 20%;
-    align-items: flex-end;
-    p {
-      position: relative;
-      left: 15%;
-      top: 80%;
-    }
-  }
-  mat-icon {
-    font-size: 25pt;
-  }
+
   // margin-right: 5%;
 }
 mat-card.product__details {
