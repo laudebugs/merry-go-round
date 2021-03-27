@@ -20,14 +20,18 @@ div.menu-bar {
     padding-right: 3%;
   }
   div.tickets {
-    width: 30%;
+    width: 40%;
     display: inline-block;
     text-align: center;
+  }
+  div.metadata {
+    width: 40%;
+    text-align: right;
   }
   div.buttons {
     display: flex;
     justify-content: flex-end;
-    width: 60%;
+    width: 15%;
     align-items: center;
     height: 100%;
     button.mat-raised-button {

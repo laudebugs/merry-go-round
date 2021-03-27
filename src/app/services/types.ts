@@ -55,3 +55,7 @@ export class Message {
     public icon: string
   ) {}
 }
+
+export class State {
+  constructor(public active: boolean, public startTime: Date) {}
+}
