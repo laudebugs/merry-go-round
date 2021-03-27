@@ -48,10 +48,12 @@ export class SignUpComponent implements OnInit {
           .getUser(user.email)
           .valueChanges.subscribe((req: any) => {
             let user = req.data.getUser;
-            localStorage.setItem('username', user.username);
-            localStorage.setItem('avatar', user.avatar);
-            localStorage.setItem('email', user.email);
-            this.router.navigateByUrl('ruf-coffee-house');
+            if (!!user) {
+              localStorage.setItem('username', user.username);
+              localStorage.setItem('avatar', user.avatar);
+              localStorage.setItem('email', user.email);
+              this.router.navigateByUrl('ruf-coffee-house');
+            }
           });
       }
     });

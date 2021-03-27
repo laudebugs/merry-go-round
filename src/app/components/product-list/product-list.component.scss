@@ -36,6 +36,16 @@ div.more__actions {
   height: 100%;
   display: flex;
   align-items: center;
+  span.like__button {
+    display: flex;
+    height: 20%;
+    align-items: flex-end;
+    p {
+      position: relative;
+      left: 15%;
+      top: 80%;
+    }
+  }
   mat-icon {
     font-size: 25pt;
   }
@@ -60,7 +70,7 @@ mat-card.product__details {
     align-items: center;
   }
   div.average__bids {
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid var(--primary);
   }
   div.product__winner {
     flex: 2;

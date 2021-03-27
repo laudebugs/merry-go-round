@@ -15,22 +15,53 @@
   --secondary: #ece816;
   --tertiary: #edebd7;
   --fourth: #e843a1;
-  --bg: #ddd8c4;
+  --header: var(--primary);
+  --bg: #eef1ef;
+  mat-card {
+    background-color: #f8f7f9;
+  }
+  --mat-card: #f8f7f9;
+  --mat-card-light: #fff3e2;
 }
 .go {
   --primary: #439775;
   --secondary: #ffb86f;
   --tertiary: #d2e59e;
   --fourth: #81559b;
+  --bg: #fdfff7;
+  --header: var(--primary);
+  mat-card {
+    background-color: #f8f7f9;
+  }
+  --mat-card-light: #fff3e2;
+
+  --mat-card: #f8f7f9;
 }
 .round {
   --primary: #3e2f5b;
   --secondary: #b0bea9;
   --tertiary: #ffc49b;
   --fourth: #a1c6ea;
+  --bg: #ede3e4;
+  --header: var(--primary);
+
+  mat-card {
+    background-color: #f8f7f9;
+  }
+  --mat-card: #f8f7f9;
+  --mat-card-light: #fff3e2;
+  --bid-temp: #087ca7;
 }
-h1,
-h2,
-h3 {
-  color: var(--primary);
+.dark {
+  --primary: #d7d6d6;
+  --secondary: #9cafb7;
+  --tertiary: #6f9283;
+  --fourth: #eecf6d;
+  --bg: #171738;
+  mat-card {
+    background-color: #033860;
+  }
+  --mat-card: #033860;
+  --mat-card-light: #087ca7;
+  --header: #033860;
 }

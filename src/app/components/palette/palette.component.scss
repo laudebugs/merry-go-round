@@ -25,36 +25,36 @@ div.colors {
     align-content: space-between;
     height: 7.5vh;
     div.color1 {
+      background-color: var(--bg);
+      width: 30px;
+      height: 30px;
+      display: inline-block;
+      border-radius: 15px;
+      border: 1px solid var(--primary);
+    }
+    div.color2 {
       background-color: var(--primary);
       width: 30px;
       height: 30px;
       display: inline-block;
       border-radius: 15px;
-      border: 1px solid black;
+      border: 1px solid var(--primary);
     }
-    div.color2 {
+    div.color3 {
       background-color: var(--secondary);
       width: 30px;
       height: 30px;
       display: inline-block;
       border-radius: 15px;
-      border: 1px solid black;
+      border: 1px solid var(--primary);
     }
-    div.color3 {
+    div.color4 {
       background-color: var(--tertiary);
       width: 30px;
       height: 30px;
       display: inline-block;
       border-radius: 15px;
-      border: 1px solid black;
-    }
-    div.color4 {
-      background-color: var(--fourth);
-      width: 30px;
-      height: 30px;
-      display: inline-block;
-      border-radius: 15px;
-      border: 1px solid black;
+      border: 1px solid var(--primary);
     }
   }
 }

@@ -3,7 +3,9 @@
     *ngFor="let product of products"
     class="product"
     [ngStyle]="{
-      'background-color': getBidStatus(product._id) ? '#FFF3E2' : ''
+      'background-color': getBidStatus(product._id)
+        ? 'var(--mat-card-light)'
+        : 'var(--mat-card)'
     }"
   >
     <mat-card-content>
@@ -19,12 +21,17 @@
           </div>
         </div>
         <div class="more__actions">
-          <mat-icon
-            (click)="likeProduct(product)"
-            [ngStyle]="{ color: product.liked ? 'var(--like)' : 'var(--grey)' }"
-            style="color: var(--grey)"
-            >favorite</mat-icon
-          >
+          <span class="like__button">
+            <mat-icon
+              (click)="likeProduct(product)"
+              [ngStyle]="{
+                color: product.liked ? 'var(--like)' : 'var(--grey)'
+              }"
+              style="color: var(--grey)"
+              >favorite</mat-icon
+            >
+            <p>5</p>
+          </span>
         </div>
         <mat-card class="product__details">
           <div class="no__bids">
@@ -34,7 +41,7 @@
             <p>Total tickets bid: {{ product.total_tickets }}</p>
           </div>
           <div class="product__winner">
-            winner
+            <p>winner</p>
             <mat-chip-list>
               <mat-chip>{{ "TBD" }}</mat-chip>
             </mat-chip-list>

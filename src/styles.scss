@@ -11,17 +11,13 @@
 html,
 body {
   height: 100%;
+}
+body {
   width: 100%;
   color: var(--primary);
-}
-
-html,
-body {
-  height: 100%;
-}
-body {
   margin: 0;
   font-family: "Now Regular";
+  background-color: var(--bg);
 }
 * {
   user-select: none;
@@ -33,4 +29,18 @@ h3 {
 }
 p {
   font-family: "Now Regular";
+}
+mat-icon,
+.mat-tab-label-content,
+th,
+td,
+h1,
+h2,
+h3,
+p {
+  color: var(--primary);
+}
+th,
+td {
+  background-color: var(--mat-card);
 }

@@ -25,6 +25,7 @@
         color="#f4a261"
         background-color="red"
         (click)="drawer.toggle()"
+        class="menu-button"
       >
         <mat-icon>menu</mat-icon>
       </button>
@@ -59,7 +60,7 @@
             ><users [allUsersBids]="allBids"></users
           ></mat-tab>
           <mat-tab *ngIf="roles.includes('ADMIN')" label="Draw"
-            >Content 3</mat-tab
+            ><p>Content 3</p></mat-tab
           >
         </mat-tab-group>
       </div>

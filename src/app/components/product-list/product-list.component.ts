@@ -138,7 +138,7 @@ export class ProductListComponent implements OnInit {
       .valueChanges.subscribe(({ data, loading }: any) => {
         let user = data.getUser;
         let newTicks = user.tickets - this.tickets;
-        if (this.tickets !== -1) {
+        if (this.tickets !== -1 && newTicks > 0) {
           this.messages.push(
             new Message(
               `You have ${newTicks} more ticket${newTicks > 1 ? 's' : ''}`,
@@ -238,6 +238,7 @@ export class ProductListComponent implements OnInit {
     thisProduct.number_bids = totalBids;
     thisProduct.total_tickets = totalTickets;
     this.allBidsChange.emit(this.allBids.filter((bid) => bid.tickets > 0));
+    this.products.sort((a, b) => b.total_tickets - a.total_tickets);
   }
 
   updateBidTickets(product: Product, choice: number) {
