@@ -26,9 +26,7 @@ export class HomeComponent implements OnInit {
 
     const helper = new JwtHelperService();
     const decodedToken = helper.decodeToken(token);
-    console.log(decodedToken);
     this.roles = decodedToken.roles;
-    console.log(token);
   }
 
   ngOnInit(): void {

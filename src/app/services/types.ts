@@ -9,7 +9,8 @@ export class User {
     public totalTickets?: number,
     public bids?: [string],
     public award?: number,
-    public roles?: [string]
+    public roles?: [string],
+    public likedProducts?: []
   ) {
     this.addTickets = 0;
   }
@@ -28,6 +29,7 @@ export class Product {
     public photo: string,
     public owner: string,
     public bid: Bid,
+    public likes: number,
     public number_bids: number = 0,
     public ave_bid: number = 0,
     public total_tickets: number = 0
