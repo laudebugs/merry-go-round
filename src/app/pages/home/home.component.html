@@ -34,7 +34,7 @@
     <div class="content" #spacer>
       <div class="product">
         <secondary-header
-          (biddingState)="(biddingState)"
+          (biddingStateChange)="this.biddingState = $event"
           [roles]="roles"
           [tickets]="tickets"
           [messages]="messages"
@@ -43,6 +43,7 @@
           <mat-tab label="Items">
             <div class="enclosure">
               <product-list
+                [biddingState]="biddingState"
                 (messagesChange)="this.messages = $event"
                 (allBidsChange)="this.allBids = $event"
                 (bidsChange)="this.bids = $event"

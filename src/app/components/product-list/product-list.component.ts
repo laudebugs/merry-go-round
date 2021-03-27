@@ -1,9 +1,9 @@
 import { AuthService } from 'src/app/services/auth/auth.service';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Apollo, gql, QueryRef } from 'apollo-angular';
 import { BidService } from 'src/app/services/bid/bid.service';
 import { ProductService } from 'src/app/services/product/product.service';
-import { Bid, Product } from './../../services/types';
+import { Bid, Product, State } from './../../services/types';
 import { Message } from '../../services/types';
 
 const getBidsQuery = gql`
@@ -72,8 +72,11 @@ export class ProductListComponent implements OnInit {
   @Output()
   productsChange = new EventEmitter<Product[]>();
 
+  @Input()
+  biddingState: State;
   likedProducts: String[] = [];
 
+  clock: String;
   constructor(
     private productService: ProductService,
     private bidService: BidService,
@@ -121,6 +124,14 @@ export class ProductListComponent implements OnInit {
     this.subscribeToNewBids();
   }
 
+  checkStatus() {
+    console.log(this.biddingState);
+    if (!this.biddingState) return true;
+    else {
+      return !this.biddingState.active;
+    }
+    return true;
+  }
   getUserTickets() {
     const getUserQuery = gql`
       query GetUser($email: String!) {

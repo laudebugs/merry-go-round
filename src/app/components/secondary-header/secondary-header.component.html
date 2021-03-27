@@ -5,6 +5,7 @@
   <div class="metadata">
     <p *ngIf="getBiddingState()">Bidding in progress...</p>
   </div>
+
   <div *ngIf="roles.includes('ADMIN')" class="buttons">
     <ng-container *ngIf="!getBiddingState(); else elseTemplate">
       <button
@@ -20,6 +21,13 @@
         End Bidding
       </button>
     </ng-template>
+    <button
+      (click)="toDrawPage()"
+      mat-stroked-button
+      style="background-color: #7209b7; color: #f08ab8"
+    >
+      Draw
+    </button>
   </div>
   <div class="message">
     <button mat-icon-button [matMenuTriggerFor]="menu">

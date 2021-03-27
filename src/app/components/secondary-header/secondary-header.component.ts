@@ -4,6 +4,8 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { BidService } from 'src/app/services/bid/bid.service';
 import { Message, State } from '../../services/types';
 import { STATE_QUERY } from 'src/app/services/state/state.service';
+import { timer } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'secondary-header',
@@ -25,7 +27,8 @@ export class SecondaryHeaderComponent implements OnInit {
   constructor(
     private stateService: StateService,
     private bidService: BidService,
-    private apollo: Apollo
+    private apollo: Apollo,
+    private router: Router
   ) {}
 
   @Input()
@@ -51,7 +54,9 @@ export class SecondaryHeaderComponent implements OnInit {
       return this.state.active;
     }
   }
-
+  toDrawPage() {
+    this.router.navigateByUrl('/draw');
+  }
   startBiddingProcess() {
     console.log('start bidding');
     this.stateService.startBidding().subscribe((data) => {

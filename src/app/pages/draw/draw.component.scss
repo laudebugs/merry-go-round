@@ -69,6 +69,7 @@ div.content {
       flex-direction: column;
       display: flex;
       mat-card {
+        background-color: var(--mat-card);
         display: flex;
         flex-direction: column;
       }
@@ -79,5 +80,4 @@ div.content {
       justify-content: flex-start;
     }
   }
-  color: #1d3354;
 }

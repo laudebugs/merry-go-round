@@ -1,89 +1,91 @@
-<general-header #spacer></general-header>
-<div class="nav_bar">
-  <ng-container *ngIf="!selectedProduct; else elseTemplate">
-    <h2>Select an item to begin bidding</h2>
-  </ng-container>
-  <ng-template #elseTemplate>
-    <h2>
-      Current Item:
-      <span class="item__title">{{ selectedProduct.name }} </span>from
-      {{ selectedProduct.owner }}
-    </h2>
-  </ng-template>
-</div>
-
-<div class="content">
-  <div class="products">
-    <mat-card
-      *ngFor="let product of products"
-      class="product"
-      [ngStyle]="{
-        'background-color':
-          this.selectedProduct._id === product._id ? '#B5C9C3' : '#eef1ef'
-      }"
-    >
-      <mat-card-content class="product__description">
-        <div>
-          <div>
-            <h2>{{ product.name }}</h2>
-            <p class="em">from {{ product.owner }}</p>
-            <p>{{ product.description }}</p>
-            <!-- <img src="{{ product.photo }}" /> -->
-          </div>
-        </div>
-      </mat-card-content>
-      <mat-card-content class="product__details">
-        <mat-card>
-          <div class="no__bids">
-            <p>No. of bidders: {{ product.number_bids }}</p>
-          </div>
-          <div class="average__bids">
-            <p>Total tickets bid: {{ product.total_tickets }}</p>
-          </div>
-        </mat-card>
-        <button
-          (click)="selectMe(product)"
-          mat-raised-button
-          style="background-color: #7ebdc2"
-        >
-          Select
-        </button>
-      </mat-card-content>
-    </mat-card>
+<span class="round">
+  <general-header #spacer></general-header>
+  <div class="nav_bar">
+    <ng-container *ngIf="!selectedProduct; else elseTemplate">
+      <h2>Select an item to begin bidding</h2>
+    </ng-container>
+    <ng-template #elseTemplate>
+      <h2>
+        Current Item:
+        <span class="item__title">{{ selectedProduct.name }} </span>from
+        {{ selectedProduct.owner }}
+      </h2>
+    </ng-template>
   </div>
-  <div class="wheel">
-    <div class="enclosure">
-      <ngx-wheel
-        [width]="600"
-        [height]="600"
-        [spinDuration]="8"
-        [disableSpinOnClick]="true"
-        [items]="items"
-        [innerRadius]="50"
-        [spinAmount]="10"
-        [textOrientation]="textOrientation"
-        [textAlignment]="textAlignment"
-        pointerStrokeColor="red"
-        pointerFillColor="purple"
-        [idToLandOn]="idToLandOn"
-        (onSpinStart)="before()"
-        (onSpinComplete)="after()"
+
+  <div class="content">
+    <div class="products">
+      <mat-card
+        *ngFor="let product of products"
+        class="product"
+        [ngStyle]="{
+          'background-color':
+            this.selectedProduct._id === product._id ? '#B5C9C3' : '#eef1ef'
+        }"
       >
-      </ngx-wheel>
-      <div class="sideNav">
-        <button
-          (click)="bid()"
-          [disabled]="checkIfAwarded()"
-          mat-raised-button
-          style="background-color: #77bfa3"
+        <mat-card-content class="product__description">
+          <div>
+            <div>
+              <h2>{{ product.name }}</h2>
+              <p class="em">from {{ product.owner }}</p>
+              <p>{{ product.description }}</p>
+              <!-- <img src="{{ product.photo }}" /> -->
+            </div>
+          </div>
+        </mat-card-content>
+        <mat-card-content class="product__details">
+          <mat-card>
+            <div class="no__bids">
+              <p>No. of bidders: {{ product.number_bids }}</p>
+            </div>
+            <div class="average__bids">
+              <p>Total tickets bid: {{ product.total_tickets }}</p>
+            </div>
+          </mat-card>
+          <button
+            (click)="selectMe(product)"
+            mat-raised-button
+            style="background-color: #7ebdc2"
+          >
+            Select
+          </button>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div class="wheel">
+      <div class="enclosure">
+        <ngx-wheel
+          [width]="600"
+          [height]="600"
+          [spinDuration]="8"
+          [disableSpinOnClick]="true"
+          [items]="items"
+          [innerRadius]="50"
+          [spinAmount]="10"
+          [textOrientation]="textOrientation"
+          [textAlignment]="textAlignment"
+          pointerStrokeColor="red"
+          pointerFillColor="purple"
+          [idToLandOn]="idToLandOn"
+          (onSpinStart)="before()"
+          (onSpinComplete)="after()"
         >
-          Draw
-        </button>
-        <mat-card>
-          <h2>Winner</h2>
-          <h1>{{ !!selectedProduct ? selectedProduct.awardee : "👀" }}</h1>
-        </mat-card>
+        </ngx-wheel>
+        <div class="sideNav">
+          <button
+            (click)="bid()"
+            [disabled]="checkIfAwarded()"
+            mat-raised-button
+            style="background-color: #c7ffea; color: var(--primary)"
+          >
+            Draw
+          </button>
+          <mat-card>
+            <h2>Winner</h2>
+            <h1>{{ !!selectedProduct ? selectedProduct.awardee : "👀" }}</h1>
+          </mat-card>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</span>

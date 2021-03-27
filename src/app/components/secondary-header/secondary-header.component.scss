@@ -30,8 +30,8 @@ div.menu-bar {
   }
   div.buttons {
     display: flex;
-    justify-content: flex-end;
-    width: 15%;
+    justify-content: space-around;
+    width: 25%;
     align-items: center;
     height: 100%;
     button.mat-raised-button {
