@@ -54,7 +54,41 @@ export class DrawComponent {
   }
 
   selectMe(product: Product) {
+    this.reset();
+
     this.selectedProduct = product;
+    let thisBidMap = this.finalBids.find(
+      (bidMap) => bidMap.productId === product._id
+    );
+
+    let tickets: Ticket[] = [];
+
+    this.items = [];
+    thisBidMap.bids.map((bid: Bid) => {
+      for (let i = 0; i < bid.tickets; i++) {
+        this.items.push({
+          text: bid.user,
+          fillStyle: '#EEABC4',
+          id: this.items.length,
+        });
+        tickets.push(
+          new Ticket(bid.user, '#690375', tickets.length + 1, bid._id)
+        );
+      }
+    });
+
+    this.tickets = tickets;
+    this.reset();
+  }
+  reset() {
+    // Reset allows you to redraw the wheel
+    // Use it after any change to wheel configurations or to allow re-spinning
+    this.wheel.reset();
+  }
+  async spin(prize) {
+    this.idToLandOn = prize;
+    await new Promise((resolve) => setTimeout(resolve, 0)); // Wait here for one tick
+    this.wheel.spin();
   }
   getAllProductsAndBids() {
     this.productService
@@ -76,24 +110,9 @@ export class DrawComponent {
       });
   }
 
-  bid(bidMap: BidMap) {
-    let tickets: Ticket[] = [];
-    this.items = [];
-    bidMap.bids.map((bid: Bid) => {
-      for (let i = 0; i < bid.tickets; i++) {
-        this.items.push({
-          text: bid.user,
-          fillStyle: '#EEABC4',
-          id: this.items.length,
-        });
-        tickets.push(new Ticket(bid.user, '', tickets.length + 1, bid._id));
-      }
-    });
-
-    this.tickets = tickets;
-    this.idToLandOn = Math.floor(Math.random() * tickets.length);
-    // this.wheel.reset();
-    // this.wheel.spin();
+  bid() {
+    let randomId = Math.floor(Math.random() * this.tickets.length);
+    this.spin(randomId);
   }
 }
 
