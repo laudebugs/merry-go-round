@@ -110,7 +110,7 @@ export class BidService {
     return this.apollo.watchQuery({
       query: gql`
         query GetProductBids($productId: String!) {
-          getProductBid(productId: $productId) {
+          getProductBids(productId: $productId) {
             _id
             productId
             tickets

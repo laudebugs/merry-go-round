@@ -1,3 +1,4 @@
+import { DrawComponent } from './pages/draw/draw.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -16,6 +17,7 @@ import { AuthService } from './services/auth/auth.service';
 import { BidService } from './services/bid/bid.service';
 import { GraphQLModule } from './services/graphql/graphql.module';
 import { ProductService } from './services/product/product.service';
+import { NgxWheelModule } from 'ngx-wheel'; //<-- import here
 
 @NgModule({
   declarations: [
@@ -24,6 +26,7 @@ import { ProductService } from './services/product/product.service';
     SignInComponent,
     SignUpComponent,
     ResetPasswordComponent,
+    DrawComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,7 +39,7 @@ import { ProductService } from './services/product/product.service';
     GraphQLModule,
     AngularStickyThingsModule,
   ],
-  exports: [Material],
+  exports: [Material, NgxWheelModule],
   providers: [AuthService, ProductService, BidService],
   bootstrap: [AppComponent],
 })

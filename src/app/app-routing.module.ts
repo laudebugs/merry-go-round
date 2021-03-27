@@ -1,3 +1,4 @@
+import { DrawComponent } from './pages/draw/draw.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from 'src/app/pages/home/home.component';
@@ -27,6 +28,11 @@ const routes: Routes = [
   {
     path: 'admin',
     component: AdminComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'draw',
+    component: DrawComponent,
     canActivate: [AuthGuard],
   },
 
