@@ -16,6 +16,7 @@ import { YourItemComponent } from './your-item/your-item.component';
 import { UsersComponent } from './users/users.component';
 import { DrawComponent } from './draw/draw.component';
 import { LikeComponent } from './like/like.component';
+import { NgxWheelModule } from 'ngx-wheel';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { LikeComponent } from './like/like.component';
     Material,
     ReactiveFormsModule,
     AngularStickyThingsModule,
+    NgxWheelModule,
   ],
   exports: [
     ProductComponent,
