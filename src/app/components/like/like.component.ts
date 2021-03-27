@@ -28,7 +28,7 @@ export class LikeComponent implements OnInit {
       .watchQuery<any>({
         query: getProductLikes,
         variables: { productId: this.product._id },
-        pollInterval: 500,
+        pollInterval: 1500,
       })
       .valueChanges.subscribe(({ data, loading }): any => {
         //@ts-ignore

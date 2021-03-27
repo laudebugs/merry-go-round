@@ -38,6 +38,8 @@ export class DrawComponent {
   // list of users
   userList: string[] = [];
   awardedUsers: string[] = [];
+
+  everyBid: Bid[] = [];
   constructor(
     private productService: ProductService,
     private bidService: BidService
@@ -45,6 +47,7 @@ export class DrawComponent {
 
   ngAfterViewInit(): void {
     console.log('only after THIS EVENT "wheel" is usable!!');
+
     this.getAllProductsAndBids();
   }
 
@@ -60,13 +63,14 @@ export class DrawComponent {
       (bid) => bid._id == this.tickets[this.idToLandOn].bidId
     );
     this.productService
-      .award(winningBid.productId, winningBid.user)
+      .award(winningBid.productId, winningBid.user.toLowerCase())
       .subscribe((res: any) => {
         let awardedProduct = res.data.award;
 
         let product = this.products.find(
           (prod) => prod._id == awardedProduct._id
         );
+        console.log('AWARD THIS: ', product);
         let indx = this.products.indexOf(product);
         // replace the product with the awarded product.
         this.products[indx] = awardedProduct;
@@ -95,7 +99,6 @@ export class DrawComponent {
         })
       );
     });
-    console.log(this.finalBids);
   }
   checkIfAwarded() {
     if (!this.selectedProduct) return false;
@@ -154,6 +157,7 @@ export class DrawComponent {
       .getProducts()
       .valueChanges.subscribe(({ data, loading }: any) => {
         this.products = data.getProducts;
+        // this.populateStats(this.everyBid);
         this.products.map((product) => {
           if (!!product.awardee) {
             console.log(product.awardee);
@@ -162,17 +166,31 @@ export class DrawComponent {
             }
           }
           this.bidService
+            .getEveryBid()
+            .valueChanges.subscribe(({ data, loading }) => {
+              console.log('every bid is: ', data.getEveryBid);
+              this.everyBid = data.getEveryBid;
+
+              this.filterAwardedUsers();
+              this.populateStats(data.getEveryBid);
+              this.everyBid = data.getEveryBid;
+              this.bids = data.getEveryBid;
+              this.everyBid.map((bid) => {
+                if (this.userList.indexOf(bid.user.toLowerCase()) == -1) {
+                  this.userList.push(bid.user.toLowerCase());
+                }
+              });
+              this.filterAwardedUsers();
+            });
+          this.bidService
             .getProductBids(product._id)
             .valueChanges.subscribe((res: any) => {
               const bidMap = new BidMap(product._id, res.data.getProductBids);
               // Add the bids to the list of bids
-              this.bids = [...this.bids, ...res.data.getProductBids];
+
               this.finalBids.push(bidMap);
               this.selectMe(this.products[0]);
               this.reset();
-              this.filterAwardedUsers();
-              console.log(res.data.productBids);
-              this.populateStats(res.data.productBids);
             });
         });
       });
@@ -183,20 +201,37 @@ export class DrawComponent {
     this.spin(randomId);
   }
   populateStats(bids: Bid[]) {
-    this.products = this.products.map((product) => {
-      let prodBids = bids.filter((bid) => bid.productId == product._id);
-      let total_tickets = 0;
-      let uniqueBidders = [];
-      for (let i = 0; i < prodBids.length; i++) {
-        total_tickets += prodBids[i].tickets;
-        if (uniqueBidders.indexOf(prodBids[i].user.toLowerCase()) == -1) {
-          uniqueBidders.push(prodBids[i].user.toLowerCase());
+    console.log(bids);
+    this.products = this.products
+      .map((product) => {
+        let prodBids = bids.filter((bid) => bid.productId == product._id);
+        let total_tickets = 0;
+        let uniqueBidders = [];
+        for (let i = 0; i < prodBids.length; i++) {
+          total_tickets += prodBids[i].tickets;
+          if (uniqueBidders.indexOf(prodBids[i].user.toLowerCase()) == -1) {
+            uniqueBidders.push(prodBids[i].user.toLowerCase());
+          }
         }
-      }
-      product.total_tickets = total_tickets;
-      product.number_bids = uniqueBidders.length;
-      return product;
-    });
+        return new Product(
+          product._id,
+          product.name,
+          product.description,
+          product.photo,
+          product.owner,
+          product.bid,
+          product.likes,
+          uniqueBidders.length,
+          total_tickets / uniqueBidders.length,
+          total_tickets,
+          product.awardee ? product.awardee : null
+        );
+      })
+      .sort((a, b) => b.total_tickets - a.total_tickets);
+  }
+  raffleAll() {
+    console.log(this.userList);
+    console.log(this.awardedUsers);
   }
 }
 

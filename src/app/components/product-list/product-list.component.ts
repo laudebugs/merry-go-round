@@ -90,7 +90,6 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit(): void {
     this.productService.getProducts().valueChanges.subscribe((data: any) => {
-      console.log(data);
       this.products = data.data.getProducts.map((product: Product) => {
         return new Product(
           product._id,
@@ -125,7 +124,6 @@ export class ProductListComponent implements OnInit {
   }
 
   checkStatus() {
-    console.log(this.biddingState);
     if (!this.biddingState) return true;
     else {
       return !this.biddingState.active;
@@ -163,9 +161,7 @@ export class ProductListComponent implements OnInit {
             )
           );
         }
-        console.log(data);
         let productLikes = data.getUser.likedProducts;
-        console.log(productLikes);
         this.products.map((prod) => {
           if (productLikes.indexOf(prod._id) === -1) prod.liked = false;
           else prod.liked = true;
@@ -231,7 +227,7 @@ export class ProductListComponent implements OnInit {
         } else {
           this.allBids = [...this.allBids, ...newBid];
         }
-        console.log(this.allBids.filter((bid) => bid.tickets > 0));
+
         this.allBidsChange.emit(this.allBids.filter((bid) => bid.tickets > 0));
         this.calcProdStats(newBid[0].productId, state);
         return prev;

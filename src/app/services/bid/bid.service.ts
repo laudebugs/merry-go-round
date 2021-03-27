@@ -21,6 +21,18 @@ const getBidsQuery = gql`
     }
   }
 `;
+
+const getEveryBidQuery = gql`
+  query GetEveryBid {
+    getEveryBid {
+      _id
+      productId
+      tickets
+      submitted
+      user
+    }
+  }
+`;
 @Injectable({
   providedIn: 'root',
 })
@@ -34,7 +46,11 @@ export class BidService {
       variables: { productId: productId },
     });
   }
-
+  getEveryBid(): QueryRef<any> {
+    return this.apollo.watchQuery({
+      query: getEveryBidQuery,
+    });
+  }
   subToBids() {}
   makeBid(bid: Bid) {
     const helper = new JwtHelperService();
