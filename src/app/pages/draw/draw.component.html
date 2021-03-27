@@ -5,17 +5,34 @@
     <mat-card
       *ngFor="let product of products"
       class="product"
-      background-color="var(--mat-card)"
+      style="background-color: #eef1ef"
     >
-      <mat-card-content>
-        <div class="product">
-          <div class="product__description">
+      <mat-card-content class="product__description">
+        <div>
+          <div>
             <h2>{{ product.name }}</h2>
             <p class="em">from {{ product.owner }}</p>
             <p>{{ product.description }}</p>
             <!-- <img src="{{ product.photo }}" /> -->
           </div>
         </div>
+      </mat-card-content>
+      <mat-card-content class="product__details">
+        <mat-card>
+          <div class="no__bids">
+            <p>No. of bidders: {{ product.number_bids }}</p>
+          </div>
+          <div class="average__bids">
+            <p>Total tickets bid: {{ product.total_tickets }}</p>
+          </div>
+        </mat-card>
+        <button
+          (click)="bid(finalBids[0])"
+          mat-raised-button
+          style="background-color: #7ebdc2"
+        >
+          Select
+        </button>
       </mat-card-content>
     </mat-card>
   </div>
@@ -37,8 +54,12 @@
       (onSpinComplete)="after()"
     >
     </ngx-wheel>
-    <button (click)="bid(finalBids[0])" mat-raised-button color="var(--green)">
-      Draw Draw
+    <button
+      (click)="bid(finalBids[0])"
+      mat-raised-button
+      style="background-color: #77bfa3"
+    >
+      Draw
     </button>
   </div>
 </div>

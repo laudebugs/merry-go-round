@@ -15,4 +15,25 @@ div.content {
     text-align: center;
     justify-content: center;
   }
+  mat-card {
+    display: flex;
+    mat-card-content.product__description {
+      width: 70%;
+    }
+    mat-card-content.product__details {
+      width: 30%;
+      flex-direction: column;
+      display: flex;
+      mat-card {
+        display: flex;
+        flex-direction: column;
+      }
+      button {
+        width: fit-content;
+        margin-left: 50%;
+      }
+      justify-content: flex-start;
+    }
+  }
+  color: #1d3354;
 }
