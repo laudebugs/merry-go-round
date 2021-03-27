@@ -27,7 +27,7 @@ export class DrawComponent {
   items: Item[] = [{ text: 'Join', id: 0, fillStyle: '#D4C1EC' }];
   idToLandOn = 0;
 
-  currentProduct: Product;
+  selectedProduct: Product;
   products: Product[] = [];
   bids: Bid[] = [];
   tickets: Ticket[] = [];
@@ -53,6 +53,9 @@ export class DrawComponent {
     console.log('done');
   }
 
+  selectMe(product: Product) {
+    this.selectedProduct = product;
+  }
   getAllProductsAndBids() {
     this.productService
       .getProducts()

@@ -1,7 +1,17 @@
 <general-header></general-header>
 <div class="nav_bar">
-  <h2>Current Item:</h2>
+  <ng-container *ngIf="!selectedProduct; else elseTemplate">
+    <h2>Select an item to begin bidding</h2>
+  </ng-container>
+  <ng-template #elseTemplate>
+    <h2>
+      Current Item:
+      <span class="item__title">{{ selectedProduct.name }} </span>from
+      {{ selectedProduct.owner }}
+    </h2>
+  </ng-template>
 </div>
+
 <div class="content">
   <div class="products">
     <mat-card
@@ -29,7 +39,7 @@
           </div>
         </mat-card>
         <button
-          (click)="bid(finalBids[0])"
+          (click)="selectMe(product)"
           mat-raised-button
           style="background-color: #7ebdc2"
         >

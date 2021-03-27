@@ -1,6 +1,14 @@
 div.nav_bar {
   margin: 1.5% 2% 0.5% 2%;
   border-bottom: 1px solid #231f20;
+  span.item__title {
+    color: #690375;
+    text-decoration: underline;
+    font-style: italic;
+    font-size: 130%;
+    padding: 0 1% 0 1%;
+  }
+  text-align: center;
 }
 div.content {
   display: flex;
@@ -18,6 +26,8 @@ div.content {
     display: inline-block;
     text-align: center;
     justify-content: center;
+    align-items: flex-start;
+    height: 100%;
   }
   mat-card {
     display: flex;
