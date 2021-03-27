@@ -14,7 +14,6 @@ import { SecondaryHeaderComponent } from './secondary-header/secondary-header.co
 import { UserListComponent } from './user-list/user-list.component';
 import { YourItemComponent } from './your-item/your-item.component';
 import { UsersComponent } from './users/users.component';
-import { DrawComponent } from './draw/draw.component';
 import { LikeComponent } from './like/like.component';
 import { NgxWheelModule } from 'ngx-wheel';
 
@@ -31,7 +30,6 @@ import { NgxWheelModule } from 'ngx-wheel';
     GiftAreaComponent,
     AvatarComponent,
     UsersComponent,
-    DrawComponent,
     LikeComponent,
   ],
   imports: [
@@ -53,8 +51,8 @@ import { NgxWheelModule } from 'ngx-wheel';
     GiftAreaComponent,
     AvatarComponent,
     UsersComponent,
-    DrawComponent,
     LikeComponent,
+    NgxWheelModule,
   ],
 })
 export class ComponentsModule {}
