@@ -32,7 +32,8 @@ export class Product {
     public likes: number,
     public number_bids: number = 0,
     public ave_bid: number = 0,
-    public total_tickets: number = 0
+    public total_tickets: number = 0,
+    public awardee: string = ''
   ) {}
 }
 export class Bid {

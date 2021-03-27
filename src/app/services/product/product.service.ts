@@ -10,6 +10,7 @@ export const GET_PRODUCTS_QUERY = gql`
       photo
       owner
       likes
+      awardee
     }
   }
 `;
@@ -27,10 +28,11 @@ export class ProductService {
   }
 
   award(productId: string, username: string) {
+    console.log(productId);
     return this.apollo.mutate({
       mutation: gql`
-        mutation: Award($productId: String, $username: String){
-          award(productId: $productId, username: $username){
+        mutation Award($productId: String!, $username: String!) {
+          award(productId: $productId, username: $username) {
             _id
             name
             awardee

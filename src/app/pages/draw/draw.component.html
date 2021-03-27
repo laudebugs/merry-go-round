@@ -1,4 +1,4 @@
-<general-header></general-header>
+<general-header #spacer></general-header>
 <div class="nav_bar">
   <ng-container *ngIf="!selectedProduct; else elseTemplate">
     <h2>Select an item to begin bidding</h2>
@@ -17,7 +17,10 @@
     <mat-card
       *ngFor="let product of products"
       class="product"
-      style="background-color: #eef1ef"
+      [ngStyle]="{
+        'background-color':
+          this.selectedProduct._id === product._id ? '#B5C9C3' : '#eef1ef'
+      }"
     >
       <mat-card-content class="product__description">
         <div>
@@ -49,25 +52,38 @@
     </mat-card>
   </div>
   <div class="wheel">
-    <ngx-wheel
-      [width]="600"
-      [height]="600"
-      [spinDuration]="8"
-      [disableSpinOnClick]="true"
-      [items]="items"
-      [innerRadius]="50"
-      [spinAmount]="10"
-      [textOrientation]="textOrientation"
-      [textAlignment]="textAlignment"
-      pointerStrokeColor="red"
-      pointerFillColor="purple"
-      [idToLandOn]="idToLandOn"
-      (onSpinStart)="before()"
-      (onSpinComplete)="after()"
-    >
-    </ngx-wheel>
-    <button (click)="bid()" mat-raised-button style="background-color: #77bfa3">
-      Draw
-    </button>
+    <div class="enclosure">
+      <ngx-wheel
+        [width]="600"
+        [height]="600"
+        [spinDuration]="8"
+        [disableSpinOnClick]="true"
+        [items]="items"
+        [innerRadius]="50"
+        [spinAmount]="10"
+        [textOrientation]="textOrientation"
+        [textAlignment]="textAlignment"
+        pointerStrokeColor="red"
+        pointerFillColor="purple"
+        [idToLandOn]="idToLandOn"
+        (onSpinStart)="before()"
+        (onSpinComplete)="after()"
+      >
+      </ngx-wheel>
+      <div class="sideNav">
+        <button
+          (click)="bid()"
+          [disabled]="checkIfAwarded()"
+          mat-raised-button
+          style="background-color: #77bfa3"
+        >
+          Draw
+        </button>
+        <mat-card>
+          <h2>Winner</h2>
+          <h1>{{ !!selectedProduct ? selectedProduct.awardee : "👀" }}</h1>
+        </mat-card>
+      </div>
+    </div>
   </div>
 </div>
