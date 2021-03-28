@@ -74,7 +74,12 @@ export class DrawComponent {
         let indx = this.products.indexOf(product);
         // replace the product with the awarded product.
         this.products[indx] = awardedProduct;
-
+        for (let i = 0; i < this.products.length; i++) {
+          if (this.products[i]._id == awardedProduct._id) {
+            this.products[i].awardee = awardedProduct.awardee;
+            console.log(awardedProduct.awardee);
+          }
+        }
         this.awardedUsers.push(winningBid.user.toLowerCase());
 
         this.filterAwardedUsers();
