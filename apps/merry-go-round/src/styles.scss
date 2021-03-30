@@ -1,0 +1,66 @@
+/* You can add global styles to this file, and also import other style files */
+// Css Reset
+@import 'style/reset';
+
+// Import fonts Stylesheet
+@import 'style/fonts';
+
+// import palette stylesheet
+@import 'style/palette';
+
+html,
+body {
+  height: 100%;
+}
+body {
+  width: 100%;
+  color: var(--primary);
+  margin: 0;
+  font-family: 'Now Regular';
+  background-color: var(--bg);
+}
+* {
+  user-select: none;
+}
+h1,
+h2,
+h3 {
+  font-family: 'Now Bold';
+}
+p {
+  font-family: 'Now Regular';
+}
+mat-icon,
+.mat-tab-label-content,
+th,
+td,
+h1,
+h2,
+h3,
+p {
+  color: var(--primary);
+}
+th,
+td {
+  background-color: var(--mat-card);
+}
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 3px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}

@@ -1,0 +1,36 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": ".",
+    "outDir": "./dist/out-tsc",
+    "forceConsistentCasingInFileNames": true,
+    "strict": false,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "es2020",
+    "lib": ["es2018", "dom", "esnext.asynciterable"],
+    "strictPropertyInitialization": false,
+    "allowSyntheticDefaultImports": true,
+    "paths": {
+      "@merry-go-round/core-date": ["libs/core-date/src/index.ts"],
+      "@merry-go-round/core-data": ["libs/core-data/src/index.ts"],
+      "@merry-go-round/core-state": ["libs/core-state/src/index.ts"],
+      "@merry-go-round/material": ["libs/material/src/index.ts"]
+    },
+    "rootDir": "."
+  },
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true,
+    "experimentalDecorators": true
+  }
+}

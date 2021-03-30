@@ -1,0 +1,22 @@
+{
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": "*",
+    "tslint.json": "*",
+    ".eslintrc.json": "*",
+    "nx.json": "*",
+    "tsconfig.base.json": "*"
+  },
+  "affected": { "defaultBase": "master" },
+  "npmScope": "merry-go-round",
+  "projects": {
+    "merry-go-round": { "tags": [] },
+    "merry-go-round-e2e": {
+      "tags": [],
+      "implicitDependencies": ["merry-go-round"]
+    },
+    "core-data": { "tags": [] },
+    "core-state": { "tags": [] },
+    "material": { "tags": [] }
+  }
+}
