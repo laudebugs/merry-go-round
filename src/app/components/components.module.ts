@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AngularStickyThingsModule } from '@w11k/angular-sticky-things';
-import { Material } from 'src/libs';
+import { Material } from '../../libs';
 import { AvatarComponent } from './avatar/avatar.component';
 import { GeneralHeaderComponent } from './general-header/general-header.component';
 import { GiftAreaComponent } from './gift-area/gift-area.component';
@@ -16,6 +16,7 @@ import { YourItemComponent } from './your-item/your-item.component';
 import { UsersComponent } from './users/users.component';
 import { LikeComponent } from './like/like.component';
 import { NgxWheelModule } from 'ngx-wheel';
+import { LoadingComponent } from './loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { NgxWheelModule } from 'ngx-wheel';
     AvatarComponent,
     UsersComponent,
     LikeComponent,
+    LoadingComponent,
   ],
   imports: [
     CommonModule,
@@ -52,6 +54,7 @@ import { NgxWheelModule } from 'ngx-wheel';
     AvatarComponent,
     UsersComponent,
     LikeComponent,
+    LoadingComponent,
     NgxWheelModule,
   ],
 })

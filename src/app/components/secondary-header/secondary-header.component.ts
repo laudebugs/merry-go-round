@@ -1,9 +1,9 @@
 import { StateService } from './../../services/state/state.service';
 import { Apollo } from 'apollo-angular';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { BidService } from 'src/app/services/bid/bid.service';
+import { BidService } from '../../services/bid/bid.service';
 import { Message, State } from '../../services/types';
-import { STATE_QUERY } from 'src/app/services/state/state.service';
+import { STATE_QUERY } from '../../services/state/state.service';
 import { timer } from 'rxjs';
 import { Router } from '@angular/router';
 

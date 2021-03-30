@@ -1,8 +1,8 @@
 import { Apollo } from 'apollo-angular';
 import { Component, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { Bid, Product, State } from 'src/app/services/types';
-import { AuthService } from 'src/app/services/auth/auth.service';
+import { Bid, Product, State } from '../../services/types';
+import { AuthService } from '../../services/auth/auth.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Message } from '../../services/types';
 

@@ -10,9 +10,9 @@ import {
   TextAlignment,
   TextOrientation,
 } from 'ngx-wheel';
-import { BidService } from 'src/app/services/bid/bid.service';
-import { ProductService } from 'src/app/services/product/product.service';
-import { Product, Bid } from 'src/app/services/types';
+import { BidService } from '../../services/bid/bid.service';
+import { ProductService } from '../../services/product/product.service';
+import { Product, Bid } from '../../services/types';
 import { emoojis } from './emojis';
 
 @Component({

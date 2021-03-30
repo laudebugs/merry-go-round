@@ -1,8 +1,8 @@
 import { Input } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { Apollo, gql, QueryRef, Subscription } from 'apollo-angular';
-import { AuthService } from 'src/app/services/auth/auth.service';
-import { Bid, User } from 'src/app/services/types';
+import { AuthService } from '../../services/auth/auth.service';
+import { Bid, User } from '../../services/types';
 
 const getAllUsers = gql`
   query GetAllUsers {

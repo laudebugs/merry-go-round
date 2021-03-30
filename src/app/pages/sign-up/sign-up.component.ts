@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { avatars } from 'src/app/components/avatar/avatars';
-import { AuthService } from 'src/app/services/auth/auth.service';
+import { avatars } from '../../components/avatar/avatars';
+import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'sign-up',

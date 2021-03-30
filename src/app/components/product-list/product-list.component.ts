@@ -1,10 +1,12 @@
-import { AuthService } from 'src/app/services/auth/auth.service';
+import { AuthService } from '../../services/auth/auth.service';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Apollo, gql, QueryRef } from 'apollo-angular';
-import { BidService } from 'src/app/services/bid/bid.service';
-import { ProductService } from 'src/app/services/product/product.service';
+import { BidService } from '../../services/bid/bid.service';
+import { ProductService } from '../../services/product/product.service';
 import { Bid, Product, State } from './../../services/types';
 import { Message } from '../../services/types';
+import { MatDialog } from '@angular/material/dialog';
+import { LoadingComponent } from '../loading/loading.component';
 
 const getBidsQuery = gql`
   query GetAllBids {
@@ -76,12 +78,14 @@ export class ProductListComponent implements OnInit {
   biddingState: State;
   likedProducts: String[] = [];
 
+  placingBid: boolean = true;
   clock: String;
   constructor(
     private productService: ProductService,
     private bidService: BidService,
     private authService: AuthService,
-    private apollo: Apollo
+    private apollo: Apollo,
+    public dialog: MatDialog
   ) {
     this.bidsQuery = apollo.watchQuery({
       query: getBidsQuery,
@@ -124,12 +128,12 @@ export class ProductListComponent implements OnInit {
   }
 
   checkStatus() {
-    if (!this.biddingState) return true;
+    if (!this.biddingState) return true && !this.placingBid;
     else {
-      return !this.biddingState.active;
+      return !this.biddingState.active && !this.placingBid;
     }
-    return true;
   }
+
   getUserTickets() {
     const getUserQuery = gql`
       query GetUser($email: String!) {
@@ -295,6 +299,11 @@ export class ProductListComponent implements OnInit {
   removeTicket(product: Product) {}
 
   placeBid(_id: string) {
+    // this.dialog.open(LoadingComponent, {
+    //   width: '30vw',
+    //   height: '40vh',
+    // });
+    this.placingBid = true;
     let bid = this.userBids.find((bid) => bid.productId === _id);
 
     // it's not always makeBid, if the bid already exists, change the bid
@@ -310,6 +319,8 @@ export class ProductListComponent implements OnInit {
           .filter((bid) => bid.tickets === bid.submitted && bid.submitted > 0)
           .sort((a, b) => b.tickets - a.tickets)
       );
+      this.placingBid = false;
+      // this.dialog.closeAll();
     });
   }
 
