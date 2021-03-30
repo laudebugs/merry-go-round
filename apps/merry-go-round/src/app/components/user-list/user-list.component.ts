@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Bid, Product, User } from '../../services/types';
+import { Bid, Product, User } from '@merry-go-round/types';
 import { avatars } from '../avatar/avatars';
 
 @Component({

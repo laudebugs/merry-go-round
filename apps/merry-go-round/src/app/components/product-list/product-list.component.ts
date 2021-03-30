@@ -3,8 +3,8 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Apollo, gql, QueryRef } from 'apollo-angular';
 import { BidService } from '../../services/bid/bid.service';
 import { ProductService } from '../../services/product/product.service';
-import { Bid, Product, State } from './../../services/types';
-import { Message } from '../../services/types';
+import { Bid, Product, State } from './@merry-go-round/types';
+import { Message } from '@merry-go-round/types';
 
 const getBidsQuery = gql`
   query GetAllBids {

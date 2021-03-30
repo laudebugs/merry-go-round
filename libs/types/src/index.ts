@@ -1,3 +1,5 @@
+export * from './lib/types.module';
+
 export class User {
   public addTickets?: number;
 
@@ -30,21 +32,21 @@ export class Product {
     public owner: string,
     public bid: Bid,
     public likes: number,
-    public number_bids: number = 0,
-    public ave_bid: number = 0,
-    public total_tickets: number = 0,
+    public number_bids = 0,
+    public ave_bid = 0,
+    public total_tickets = 0,
     public awardee: string = ''
   ) {}
 }
 export class Bid {
-  public submitted: number = 0;
+  public submitted = 0;
   public tempValue: number;
   constructor(
     public productId: string,
     public tickets: number,
     public user: string,
     public _id: string = '-1',
-    public prev_value: number = 0
+    public prev_value = 0
   ) {}
 }
 

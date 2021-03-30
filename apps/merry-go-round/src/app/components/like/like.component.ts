@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Apollo, gql } from 'apollo-angular';
 import { ProductService } from '../../services/product/product.service';
-import { Product } from '../../services/types';
+import { Product } from '@merry-go-round/types';
 
 const getProductLikes = gql`
   query GetNumberOfLikes($productId: String!) {

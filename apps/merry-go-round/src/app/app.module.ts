@@ -21,6 +21,7 @@ import { NgxWheelModule } from 'ngx-wheel';
 import { StoreModule } from '@ngrx/store';
 import { CoreDataModule, coreDataRoutes } from '@merry-go-round/core-data';
 import { CoreStateModule, coreStateRoutes } from '@merry-go-round/core-state';
+import { TypesModule, typesRoutes } from '@merry-go-round/types';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { CoreStateModule, coreStateRoutes } from '@merry-go-round/core-state';
     StoreModule.forRoot({}, {}),
     CoreDataModule,
     CoreStateModule,
+    TypesModule,
   ],
   exports: [Material, NgxWheelModule],
   providers: [AuthService, ProductService, BidService],

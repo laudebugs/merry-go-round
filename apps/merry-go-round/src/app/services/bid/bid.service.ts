@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Apollo, gql, QueryRef, Subscription } from 'apollo-angular';
-import { Bid } from '../types';
+import { Bid } from '@merry-go-round/types';
 
 export class newBidSub extends Subscription {
   BIDS_SUBSCRIPTION = gql`

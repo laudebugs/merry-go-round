@@ -1,10 +1,10 @@
 import { Apollo } from 'apollo-angular';
 import { Component, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { Bid, Product, State } from '../../services/types';
+import { Bid, Product, State } from '@merry-go-round/types';
 import { AuthService } from '../../services/auth/auth.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { Message } from '../../services/types';
+import { Message } from '@merry-go-round/types';
 
 @Component({
   selector: 'home',

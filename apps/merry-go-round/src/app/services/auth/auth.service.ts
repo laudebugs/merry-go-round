@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { Apollo, gql } from 'apollo-angular';
-import { Credentials, User } from '../types';
+import { Credentials, User } from '@merry-go-round/types';
 @Injectable({
   providedIn: 'root',
 })

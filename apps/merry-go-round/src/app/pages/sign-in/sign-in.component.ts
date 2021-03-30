@@ -8,7 +8,7 @@ import {
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth/auth.service';
-import { Credentials } from './../../services/types';
+import { Credentials } from './@merry-go-round/types';
 
 @Component({
   selector: 'sign-in',

@@ -12,7 +12,7 @@ import {
 } from 'ngx-wheel';
 import { BidService } from '../../services/bid/bid.service';
 import { ProductService } from '../../services/product/product.service';
-import { Product, Bid } from '../../services/types';
+import { Product, Bid } from '@merry-go-round/types';
 import { emoojis } from './emojis';
 
 @Component({

@@ -17,6 +17,7 @@
     },
     "core-data": { "tags": [] },
     "core-state": { "tags": [] },
-    "material": { "tags": [] }
+    "material": { "tags": [] },
+    "types": { "tags": [] }
   }
 }

@@ -22,7 +22,8 @@
       "@merry-go-round/core-date": ["libs/core-date/src/index.ts"],
       "@merry-go-round/core-data": ["libs/core-data/src/index.ts"],
       "@merry-go-round/core-state": ["libs/core-state/src/index.ts"],
-      "@merry-go-round/material": ["libs/material/src/index.ts"]
+      "@merry-go-round/material": ["libs/material/src/index.ts"],
+      "@merry-go-round/types": ["libs/types/src/index.ts"]
     },
     "rootDir": "."
   },
