@@ -237,6 +237,17 @@ export class DrawComponent {
   raffleAll() {
     console.log(this.userList);
     console.log(this.awardedUsers);
+    // loop through the products that haven't been awarded
+    let unAwarded = this.products.filter((product) => !!product.awardee);
+    let unAwardedIds = [];
+    for (let i = 0; i < unAwarded.length; i++) {
+      unAwardedIds.push(unAwarded[i]._id);
+    }
+    // get bids for unawarded products
+    const bids = this.everyBid.filter((bid) => {
+      return unAwardedIds.includes(bid.productId);
+    });
+    console.log(bids);
   }
 }
 
