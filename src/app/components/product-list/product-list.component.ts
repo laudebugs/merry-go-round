@@ -156,15 +156,15 @@ export class ProductListComponent implements OnInit {
       .valueChanges.subscribe(({ data, loading }: any) => {
         let user = data.getUser;
         let newTicks = user.tickets - this.tickets;
-        if (this.tickets !== -1 && newTicks > 0) {
-          this.messages.push(
-            new Message(
-              `You have ${newTicks} more ticket${newTicks > 1 ? 's' : ''}`,
-              false,
-              'money'
-            )
-          );
-        }
+        // if (this.tickets !== -1 && newTicks > 0) {
+        //   this.messages.push(
+        //     new Message(
+        //       `You have ${newTicks} more ticket${newTicks > 1 ? 's' : ''}`,
+        //       false,
+        //       'money'
+        //     )
+        //   );
+        // }
         let productLikes = data.getUser.likedProducts;
         this.products.map((prod) => {
           if (productLikes.indexOf(prod._id) === -1) prod.liked = false;

@@ -6,6 +6,17 @@ mat-drawer-container.container {
     background-color: var(--secondary);
     padding-top: 8vh;
   }
+  @media only screen and (max-width: 900px) {
+    mat-drawer {
+      width: 50vw;
+    }
+  }
+
+  @media only screen and (max-width: 600px) {
+    mat-drawer {
+      width: 70vw;
+    }
+  }
   div.misc {
     text-align: center;
     img {
@@ -78,10 +89,26 @@ mat-drawer-content {
             }
           }
         }
+        @media only screen and (max-width: 900px) {
+          gift-area {
+            display: none;
+          }
+          product-list {
+            width: 100%;
+          }
+        }
       }
     }
     div.user {
       width: 20%;
+    }
+    @media only screen and (max-width: 700px) {
+      div.user {
+        display: none;
+      }
+      div.product {
+        width: 100%;
+      }
     }
   }
 }
